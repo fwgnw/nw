@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 import time
 
 
+MULTIPLIER = 17150
+
 TRIG = [16, 38, 35, 13]
 ECHO = [18, 36, 37, 11]
 RESULT = [0, 0, 0, 0]
@@ -45,7 +47,7 @@ def measure(i):
 
 
 def print_result(i):
-    distance = RESULT[i] * 17150
+    distance = RESULT[i] * MULTIPLIER
     distance = round(distance, 2)
 
     print("distance[" + str(i) + "] = " + str(distance) + " cm")
@@ -55,9 +57,11 @@ def save_results():
     with open(LOGFILE, "a+") as file:
         for result in RESULT:
             DATA.append(result)
-            file.write(str(round(result * 17150, 2)) + "\n")
+            file.write(str(round(result * MULTIPLIER, 2)) + "\n")
         file.write("\n")
 
+
+MULTIPLIER = int(input("M = "))
 
 setup()
 

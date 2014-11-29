@@ -5,7 +5,10 @@ import time
 TRIG = [16, 38, 35, 13]
 ECHO = [18, 36, 37, 11]
 RESULT = [0, 0, 0, 0]
-    
+DATA = []
+
+LOGFILE = "log/" + str(int(time.time())) + ".log"
+
 
 def setup():
     GPIO.cleanup()
@@ -48,6 +51,14 @@ def print_result(i):
     print("distance[" + str(i) + "] = " + str(distance) + " cm")
 
 
+def save_results():
+    with open(LOGFILE, "a+") as file:
+        for result in RESULT:
+            DATA.append(result)
+            file.write(str(round(result * 17150, 2)) + "\n")
+        file.write("\n")
+
+
 setup()
 
 while True:
@@ -56,6 +67,7 @@ while True:
     for i in range(len(TRIG)):
         measure(i)
         print_result(i)
+    save_results()
         
     prgrm_end = time.time()
     print("duration = " + str(round(prgrm_end - prgrm_start, 2)) + " s")

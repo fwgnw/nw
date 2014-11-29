@@ -32,11 +32,18 @@ def measure(i):
 
     msr_start = time.time()
 
-    while GPIO.input(ECHO[i]) == 0 and time.time() - msr_start < 0.05:
-        pulse_start = time.time()
+    pulse_start = -1
+    pulse_end = 0
 
-    while GPIO.input(ECHO[i]) == 1 and time.time() - msr_start < 0.05:
+    while GPIO.input(ECHO[i]) == 0:
+        pulse_start = time.time()
+        if time.time() - msr_start > 0.05:
+            break
+
+    while GPIO.input(ECHO[i]) == 1:
         pulse_end = time.time()
+        if time.time() - msr_start > 0.05:
+            break
 
     if time.time() - msr_start > 0.05:
         RESULT[i] = -1

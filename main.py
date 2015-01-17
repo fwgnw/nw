@@ -12,8 +12,7 @@ RESULT = [0, 0, 0, 0]
 DATA = [[], [], [], []]
 WDATA = [[0, 0], [0, 0], [0, 0], [0, 0]]
 
-M_IN = [29, 32]   #0: engine, 1: steering
-M_OUT = [31, 33]  #0: engine, 1: steering
+MOTOR = [31, 33]  #0: engine, 1: steering
 
 LOGFILE = "log/" + str(int(time.time())) + ".log"
 
@@ -33,12 +32,9 @@ def setup():
     for echo in ECHO:
         GPIO.setup(echo, GPIO.IN)
 
-    for min in M_IN:
-        GPIO.setup(min, GPIO.IN)
-
-    for mout in M_OUT:
-        GPIO.setup(mout, GPIO.OUT)
-        GPIO.output(mout, False)
+    for motor in MOTOR:
+        GPIO.setup(motor, GPIO.OUT)
+        GPIO.output(motor, False)
 
 
 def measure(i):
@@ -116,9 +112,9 @@ def check_results():
 
 
 def drive():
-    GPIO.output(M_OUT[0], True)
+    GPIO.output(MOTOR[0], True)
     time.sleep(10)
-    GPIO.output(M_OUT[0], False)
+    GPIO.output(MOTOR[0], False)
 
 '''
 MULTIPLIER = int(input("M = "))

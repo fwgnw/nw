@@ -117,7 +117,7 @@ def check_results():
 
 def drive():
     GPIO.output(M_OUT[0], True)
-    wait(1)
+    sleep(1)
     GPIO.output(M_OUT[0], False)
 
 '''

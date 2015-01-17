@@ -65,13 +65,8 @@ def measure(i):
         RESULT[i] = -1
     else:
         RESULT[i] = pulse_end - pulse_start
-<<<<<<< HEAD
-
-    time.sleep(.25)
-=======
 
     time.sleep(WAITTIME)
->>>>>>> 5a90837f53005b9cda5a07a5ac7977d0fac5c868
 
 
 def print_result(i):

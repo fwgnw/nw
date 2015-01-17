@@ -9,6 +9,9 @@ ECHO = [18, 36, 37, 11]
 RESULT = [0, 0, 0, 0]
 DATA = [[], [], [], []]
 
+M_IN = [29, 32]   #0: engine, 1: steering
+M_OUT = [31, 33]  #0: engine, 1: steering
+
 LOGFILE = "log/" + str(int(time.time())) + ".log"
 
 
@@ -23,6 +26,13 @@ def setup():
 
     for echo in ECHO:
         GPIO.setup(echo, GPIO.IN)
+
+    for min in M_IN:
+        GPIO.setup(min, GPIO.IN)
+
+    for mout in M_OUT:
+        GPIO.setup(mout, GPIO.OUT)
+        GPIO.output(mout, False)
 
 
 def measure(i):
@@ -49,7 +59,7 @@ def measure(i):
         RESULT[i] = -1
     else:
         RESULT[i] = pulse_end - pulse_start
-    
+
     time.sleep(.25)
 
 
@@ -80,6 +90,12 @@ def save_results():
         file.write("\n")
 
 
+def drive():
+    GPIO.output(M_OUT[0], True)
+    wait(1)
+    GPIO.output(M_OUT[0], False)
+
+'''
 MULTIPLIER = int(input("M = "))
 
 setup()
@@ -94,5 +110,12 @@ while True:
 
     prgrm_end = time.time()
     print("duration = " + str(round(prgrm_end - prgrm_start, 2)) + " s")
+
+GPIO.cleanup()
+'''
+
+setup()
+
+drive()
 
 GPIO.cleanup()

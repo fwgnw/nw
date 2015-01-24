@@ -111,7 +111,7 @@ def check_results():
                 file.write("\n")
 
 
-def time(distance):
+def timeFromDistance(distance):
     return distance / MULTIPLIER
 
 
@@ -143,7 +143,7 @@ def stopdrive():
 
 def drive1():
     driveForward()
-    while RESULT[0] > time(5):  #while distance is larger than 5m
+    while RESULT[0] > timeFromDistance(5):  #while distance is larger than 5m
         measure(0)
         check_results()
     driveBackward()

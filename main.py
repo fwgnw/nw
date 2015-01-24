@@ -9,10 +9,10 @@ WAITTIME = 0.125
 TRIG = [16, 38, 35, 13]
 ECHO = [18, 36, 37, 11]
 RESULT = [0, 0, 0, 0]
-DATA = [[], [], [], []]
+DATA = [[], [], [], []]  #0: front, 1: left, 2: back, 3: right
 WDATA = [[0, 0], [0, 0], [0, 0], [0, 0]]
 
-MOTOR = [31, 33]  #0: engine, 1: steering
+MOTOR = [31, -1, 33, -1]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
 LOGFILE = "log/" + str(int(time.time())) + ".log"
 
@@ -88,11 +88,11 @@ def save_result(i, file):
 def check_results():
     with open(LOGFILE, "a+") as file:
         for i in range(len(RESULT)):
-	    if len(DATA[i]) >= 1 and RESULT[i] > 0:
+            if len(DATA[i]) >= 1 and RESULT[i] > 0:
                 n = DATA[i][len(DATA[i]) - 1]
 
-		if math.fabs(RESULT[i] - n) > math.fabs(n) / 100.0 * 10:
-		    if WDATA[i][0] == 0:
+                if math.fabs(RESULT[i] - n) > math.fabs(n) / 100.0 * 10:
+        		    if WDATA[i][0] == 0:
                         WDATA[i][0] = n
                     elif WDATA[i][1] == 0:
                         WDATA[i][1] = n
@@ -104,17 +104,52 @@ def check_results():
                                 clear_wdata(i)
                         else:
                             clear_wdata(i)
-		else:
-		    save_result(i, file)
-	    elif RESULT[i] > 0:
-		save_result(i, file)
-        file.write("\n")
+        		else:
+        		    save_result(i, file)
+            elif RESULT[i] > 0:
+                save_result(i, file)
+                file.write("\n")
 
 
-def drive():
+def time(distance):
+    return distance / MULTIPLIER
+
+
+def testdrive():
     GPIO.output(MOTOR[0], True)
     time.sleep(10)
     GPIO.output(MOTOR[0], False)
+
+def driveForward():
+    GPIO.output(MOTOR[0], True)
+    GPIO.output(MOTOR[1], False)
+
+def driveBackward():
+    GPIO.output(MOTOR[0], False)
+    GPIO.output(MOTOR[1], True)
+
+def steerLeft():
+    GPIO.output(MOTOR[2], True)
+    GPIO.output(MOTOR[3], False)
+
+def steerRight():
+    GPIO.output(MOTOR[2], False)
+    GPIO.output(MOTOR[3], True)
+
+def stopdrive():
+    GPIO.output(MOTOR[0], False)
+    GPIO.output(MOTOR[1], False)
+
+
+def drive1():
+    driveForward()
+    while RESULT[0] > time(5):  #while distance is larger than 5m
+        measure(0)
+        check_results()
+    driveBackward()
+    time.sleep(2)
+    stopdrive()
+
 
 '''
 MULTIPLIER = int(input("M = "))
@@ -125,9 +160,9 @@ for glhf in range(100):
     prgrm_start = time.time()
 
     for i in range(len(TRIG)):
-	measure(i)
-    check_results()
-    measurements += 1
+        measure(i)
+        check_results()
+        measurements += 1
 
     prgrm_end = time.time()
     print("duration = " + str(round(prgrm_end - prgrm_start, 2)) + " s")
@@ -143,6 +178,6 @@ print("3: " + str(round(successful_measurements[3] / float(measurements) * 100, 
 
 setup()
 
-drive()
+testdrive()
 
 GPIO.cleanup()

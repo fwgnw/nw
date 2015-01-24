@@ -1,4 +1,4 @@
-import RPi.GPIO
+import RPi.GPIO as GPIO
 
 TRIG = [29, 31, 32, 33]
 

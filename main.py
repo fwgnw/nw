@@ -12,7 +12,7 @@ RESULT = [0, 0, 0, 0]
 DATA = [[], [], [], []]  #0: front, 1: left, 2: back, 3: right
 WDATA = [[0, 0], [0, 0], [0, 0], [0, 0]]
 
-MOTOR = [33, 32, 31, 29]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
+MOTOR = [32, 33, 31, 29]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
 LOGFILE = "log/" + str(int(time.time())) + ".log"
 
@@ -169,6 +169,7 @@ def drive1():
 
 
 def drive2():
+    time.sleep(30)
     driveForward()
     time.sleep(1)
     stopdrive()

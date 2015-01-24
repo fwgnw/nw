@@ -157,6 +157,7 @@ def steertest():
 
 
 def drive1():
+    time.sleep(15)
     driveForward()
     while RESULT[0] > timeFromDistance(100):  #while distance is larger than 1m
         measure(0)
@@ -169,7 +170,7 @@ def drive1():
 
 
 def drive2():
-    time.sleep(30)
+    time.sleep(15)
     driveForward()
     time.sleep(1)
     stopdrive()
@@ -203,4 +204,4 @@ print("3: " + str(round(successful_measurements[3] / float(measurements) * 100, 
 setup()
 
 #sensortest()
-drive2()
+drive1()

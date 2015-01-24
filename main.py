@@ -190,3 +190,4 @@ while True:
         steerLeft()
     else:
         stopsteer()
+    time.sleep(0.5)

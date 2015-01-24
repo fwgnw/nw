@@ -179,5 +179,3 @@ print("3: " + str(round(successful_measurements[3] / float(measurements) * 100, 
 setup()
 
 testdrive()
-
-GPIO.cleanup()

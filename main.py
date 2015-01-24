@@ -186,7 +186,7 @@ while True:
     measure(0)
     check_results()
 
-    if RESULT[0] < timeFromDistance(0.5):
+    if RESULT[0] < timeFromDistance(50):
         steerLeft()
     else:
         stopsteer()

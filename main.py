@@ -112,7 +112,7 @@ def check_results():
 
 
 def timeFromDistance(distance):
-    return distance / MULTIPLIER
+    return distance / (float)MULTIPLIER
 
 
 def testdrive():
@@ -186,7 +186,7 @@ while True:
     measure(0)
     check_results()
 
-    if RESULT[0] * MULTIPLIER < 50:
+    if RESULT[0] < timeFromDistance(50):
         steerLeft()
     else:
         stopsteer()

@@ -92,7 +92,7 @@ def check_results():
                 n = DATA[i][len(DATA[i]) - 1]
 
                 if math.fabs(RESULT[i] - n) > math.fabs(n) / 100.0 * 10:
-        		    if WDATA[i][0] == 0:
+                    if WDATA[i][0] == 0:
                         WDATA[i][0] = n
                     elif WDATA[i][1] == 0:
                         WDATA[i][1] = n

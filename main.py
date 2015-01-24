@@ -133,12 +133,12 @@ def stopdrive():
     GPIO.output(MOTOR[1], False)
 
 def steerLeft():
-    GPIO.output(MOTOR[2], True)
-    GPIO.output(MOTOR[3], False)
-
-def steerRight():
     GPIO.output(MOTOR[2], False)
     GPIO.output(MOTOR[3], True)
+
+def steerRight():
+    GPIO.output(MOTOR[2], True)
+    GPIO.output(MOTOR[3], False)
 
 def stopsteer():
     GPIO.output(MOTOR[2], False)
@@ -182,9 +182,11 @@ print("3: " + str(round(successful_measurements[3] / float(measurements) * 100, 
 
 setup()
 
-#testdrive()
-steerLeft()
-time.sleep(2)
-steerRight()
-time.sleep(2)
-stopsteer()
+while True:
+    measure(0)
+    check_results()
+
+    if RESULT[0] < timeFromDistance(0.5):
+        steerLeft()
+    else:
+        stopsteer()

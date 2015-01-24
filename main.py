@@ -105,7 +105,7 @@ def check_results():
                         else:
                             clear_wdata(i)
         		else:
-        		    save_result(i, file)
+                    save_result(i, file)
             elif RESULT[i] > 0:
                 save_result(i, file)
                 file.write("\n")

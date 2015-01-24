@@ -145,13 +145,32 @@ def stopsteer():
     GPIO.output(MOTOR[3], False)
 
 
-def drive1():
-    driveForward()
-    while RESULT[0] > timeFromDistance(5):  #while distance is larger than 5m
+def steertest():
+    while True:
         measure(0)
         check_results()
+
+        if RESULT[0] < timeFromDistance(50):
+            steerLeft()
+        else:
+            stopsteer()
+
+
+def drive1():
+    driveForward()
+    while RESULT[0] > timeFromDistance(100):  #while distance is larger than 1m
+        measure(0)
+        check_results()
+    '''
     driveBackward()
     time.sleep(2)
+    '''
+    stopdrive()
+
+
+def drive2():
+    driveForward()
+    time.sleep(1)
     stopdrive()
 
 
@@ -182,11 +201,5 @@ print("3: " + str(round(successful_measurements[3] / float(measurements) * 100, 
 
 setup()
 
-while True:
-    measure(0)
-    check_results()
-
-    if RESULT[0] < timeFromDistance(50):
-        steerLeft()
-    else:
-        stopsteer()
+#sensortest()
+drive2()

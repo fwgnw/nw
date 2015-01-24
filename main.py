@@ -112,7 +112,7 @@ def check_results():
 
 
 def timeFromDistance(distance):
-    return distance / (float)MULTIPLIER
+    return distance / float(MULTIPLIER)
 
 
 def testdrive():

@@ -104,7 +104,7 @@ def check_results():
                                 clear_wdata(i)
                         else:
                             clear_wdata(i)
-                        else:
+                else:
                     save_result(i, file)
             elif RESULT[i] > 0:
                 save_result(i, file)

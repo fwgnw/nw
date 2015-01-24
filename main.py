@@ -128,6 +128,10 @@ def driveBackward():
     GPIO.output(MOTOR[0], False)
     GPIO.output(MOTOR[1], True)
 
+def stopdrive():
+    GPIO.output(MOTOR[0], False)
+    GPIO.output(MOTOR[1], False)
+
 def steerLeft():
     GPIO.output(MOTOR[2], True)
     GPIO.output(MOTOR[3], False)
@@ -136,9 +140,9 @@ def steerRight():
     GPIO.output(MOTOR[2], False)
     GPIO.output(MOTOR[3], True)
 
-def stopdrive():
-    GPIO.output(MOTOR[0], False)
-    GPIO.output(MOTOR[1], False)
+def stopsteer():
+    GPIO.output(MOTOR[2], False)
+    GPIO.output(MOTOR[3], False)
 
 
 def drive1():
@@ -178,4 +182,9 @@ print("3: " + str(round(successful_measurements[3] / float(measurements) * 100, 
 
 setup()
 
-testdrive()
+#testdrive()
+steerLeft()
+time.sleep(2)
+steerRight()
+time.sleep(2)
+stopsteer()

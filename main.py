@@ -16,8 +16,8 @@ MOTOR = [29, 31, 32, 33]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
 LOGFILE = "log/main_" + str(int(time.time())) + ".log"
 
-drivingForward = False
-drivingBackward = False
+#drivingForward = False
+#drivingBackward = False
 
 measurements = 0
 successful_measurements = [0, 0, 0, 0]
@@ -148,13 +148,13 @@ def stopsteer():
     GPIO.output(MOTOR[2], False)
     GPIO.output(MOTOR[3], False)
 
-def brake(direction):
+def brake():
     BRAKETIME = 1
-    if direction:
+    if drivingForward:
         print("driving BACKWARD")
         driveBackward()
         time.sleep(BRAKETIME)
-    else:
+    elif drivingBackward:
         print("driving FORWARD")
         driveForward()
         time.sleep(BRAKETIME)
@@ -182,7 +182,7 @@ def drive1():
     while RESULT[0] > timeFromDistance(100):  #while distance is larger than 1m
         measure(0)
         check_results()
-    brake(drivingForward)
+    brake()
 
 setup()
 

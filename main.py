@@ -52,15 +52,15 @@ def measure(i):
 
     while GPIO.input(ECHO[i]) == 0:
         pulse_start = time.time()
-        if time.time() - msr_start > 0.05:
+        if time.time() - msr_start > 0.025:
             break
 
     while GPIO.input(ECHO[i]) == 1:
         pulse_end = time.time()
-        if time.time() - msr_start > 0.05:
+        if time.time() - msr_start > 0.025:
             break
 
-    if time.time() - msr_start > 0.05:
+    if time.time() - msr_start > 0.025:
         RESULT[i] = 1
     else:
         RESULT[i] = pulse_end - pulse_start
@@ -167,17 +167,6 @@ def brake():
     stopdrive()
 
 
-def steertest():
-    while True:
-        measure(0)
-        check_results()
-
-        if RESULT[0] < timeFromDistance(50):
-            steerLeft()
-        else:
-            stopsteer()
-
-
 def drive1():
     for i in range(8):
         print(8 - i)
@@ -185,7 +174,7 @@ def drive1():
     driveForward()
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(50):  #while distance is larger than 1m
+    while RESULT[0] > timeFromDistance(75):  #while distance is larger than 1m
         measure(0)
         check_results()
     brake()

@@ -16,6 +16,9 @@ MOTOR = [29, 31, 32, 33]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
 LOGFILE = "log/main_" + str(int(time.time())) + ".log"
 
+drivingFroward = False
+drivingBackward = False
+
 measurements = 0
 successful_measurements = [0, 0, 0, 0]
 
@@ -122,15 +125,21 @@ def testdrive():
 
 def driveForward():
     GPIO.output(MOTOR[0], True)
+    drivingForward = True
     GPIO.output(MOTOR[1], False)
+    drivingBackward = False
 
 def driveBackward():
     GPIO.output(MOTOR[0], False)
+    drivingForward = False
     GPIO.output(MOTOR[1], True)
+    drivingBackward = True
 
 def stopdrive():
     GPIO.output(MOTOR[0], False)
+    drivingForward = False
     GPIO.output(MOTOR[1], False)
+    drivingBackward = False
 
 def steerLeft():
     GPIO.output(MOTOR[2], False)
@@ -143,6 +152,15 @@ def steerRight():
 def stopsteer():
     GPIO.output(MOTOR[2], False)
     GPIO.output(MOTOR[3], False)
+
+def brake():
+    if (drivingForward):
+        driveBackward()
+        time.sleep(0.1)
+    elif (drivingBackward):
+        driveForward()
+        time.sleep(0.1)
+    stopdrive()
 
 
 def steertest():
@@ -168,7 +186,7 @@ def drive1():
     driveBackward()
     time.sleep(2)
     '''
-    stopdrive()
+    brake()
 
 
 def drive2():

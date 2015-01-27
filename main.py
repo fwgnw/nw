@@ -14,7 +14,7 @@ WDATA = [[0, 0], [0, 0], [0, 0], [0, 0]]
 
 MOTOR = [32, 33, 31, 29]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
-LOGFILE = "log/" + str(int(time.time())) + ".log"
+LOGFILE = "log/main_" + str(int(time.time())) + ".log"
 
 measurements = 0
 successful_measurements = [0, 0, 0, 0]

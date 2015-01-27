@@ -16,8 +16,10 @@ MOTOR = [29, 31, 32, 33]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
 LOGFILE = "log/main_" + str(int(time.time())) + ".log"
 
-global drivingForward = False
-global drivingBackward = False
+global drivingForward
+drivingForward = False
+global drivingBackward
+drivingBackward = False
 
 measurements = 0
 successful_measurements = [0, 0, 0, 0]

@@ -42,25 +42,33 @@ def setup():
 
 
 def measure(i):
+    start = time.time()
     GPIO.output(TRIG[i], True)
     time.sleep(0.00001)
     GPIO.output(TRIG[i], False)
+    print(str(time.time() - start))
 
     msr_start = time.time()
 
     pulse_start = -1
     pulse_end = 0
+    print(str(time.time() - msr_start))
 
+    start = time.time()
     while GPIO.input(ECHO[i]) == 0:
         pulse_start = time.time()
         if time.time() - msr_start > 0.025:
             break
+    print(str(time.time() - start))
 
+    start = time.time()
     while GPIO.input(ECHO[i]) == 1:
         pulse_end = time.time()
         if time.time() - msr_start > 0.025:
             break
+    print(str(time.time() - start))
 
+    start = time.time()
     if time.time() - msr_start > 0.025:
         RESULT[i] = 1
     else:
@@ -69,6 +77,7 @@ def measure(i):
     print("r " + str(RESULT[i] * MULTIPLIER) + " cm")
 
     time.sleep(WAITTIME)
+    print(str(time.time() - start))
 
 
 def print_result(i):
@@ -175,12 +184,8 @@ def drive1():
         print(8 - i)
         time.sleep(1)
     driveForward()
-    start = time.time()
     measure(0)
-    print(str(time.time() - start))
-    start = time.time()
     check_results()
-    print(str(time.time() - start))
     while RESULT[0] > timeFromDistance(64):  #while distance is larger than 1m
         measure(0)
         check_results()

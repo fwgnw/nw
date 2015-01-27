@@ -177,8 +177,10 @@ def drive1():
     driveForward()
     start = time.time()
     measure(0)
+    print(str(time.time() - start))
+    start = time.time()
     check_results()
-    print("t = " + str(time.time() - start))
+    print(str(time.time() - start))
     while RESULT[0] > timeFromDistance(64):  #while distance is larger than 1m
         measure(0)
         check_results()

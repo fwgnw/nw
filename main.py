@@ -187,46 +187,8 @@ def drive1():
     while RESULT[0] > timeFromDistance(100):  #while distance is larger than 1m
         measure(0)
         check_results()
-    '''
-    driveBackward()
-    time.sleep(2)
-    '''
     brake()
 
-
-def drive2():
-    time.sleep(8)
-    driveForward()
-    time.sleep(1)
-    stopdrive()
-
-
-'''
-MULTIPLIER = int(input("M = "))
-
 setup()
 
-for glhf in range(100):
-    prgrm_start = time.time()
-
-    for i in range(len(TRIG)):
-        measure(i)
-        check_results()
-        measurements += 1
-
-    prgrm_end = time.time()
-    print("duration = " + str(round(prgrm_end - prgrm_start, 2)) + " s")
-
-GPIO.cleanup()
-
-print(measurements)
-print("0: " + str(round(successful_measurements[0] / float(measurements) * 100, 2)))
-print("1: " + str(round(successful_measurements[1] / float(measurements) * 100, 2)))
-print("2: " + str(round(successful_measurements[2] / float(measurements) * 100, 2)))
-print("3: " + str(round(successful_measurements[3] / float(measurements) * 100, 2)))
-'''
-
-setup()
-
-#sensortest()
 drive1()

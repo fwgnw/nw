@@ -46,27 +46,27 @@ def measure(i):
     GPIO.output(TRIG[i], True)
     time.sleep(0.00001)
     GPIO.output(TRIG[i], False)
-    print(str(time.time() - start))
+    print("1: " + str(time.time() - start))
 
     msr_start = time.time()
 
     pulse_start = -1
     pulse_end = 0
-    print(str(time.time() - msr_start))
+    print("2: " + str(time.time() - msr_start))
 
     start = time.time()
     while GPIO.input(ECHO[i]) == 0:
         pulse_start = time.time()
         if time.time() - msr_start > 0.025:
             break
-    print(str(time.time() - start))
+    print("3: " + str(time.time() - start))
 
     start = time.time()
     while GPIO.input(ECHO[i]) == 1:
         pulse_end = time.time()
         if time.time() - msr_start > 0.025:
             break
-    print(str(time.time() - start))
+    print("4: " + str(time.time() - start))
 
     start = time.time()
     if time.time() - msr_start > 0.025:
@@ -77,7 +77,7 @@ def measure(i):
     print("r " + str(RESULT[i] * MULTIPLIER) + " cm")
 
     time.sleep(WAITTIME)
-    print(str(time.time() - start))
+    print("5: " + str(time.time() - start))
 
 
 def print_result(i):

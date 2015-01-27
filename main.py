@@ -196,7 +196,12 @@ def drive1():
 
 def drive2():
     driveForward()
-    time.sleep(0.5)
+    start = time.time()
+    measure(0)
+    check_results()
+    while (time.time() - start) < 0.5:  #while distance is larger than 1m
+        measure(0)
+        check_results()
     turn()
     stopdrive()
 

@@ -117,6 +117,7 @@ def check_results():
                 save_result(i, file)
                 file.write("\n")
 
+            n = DATA[i][len(DATA[i]) - 1]
             velocity = ((n - WDATA[i][0]) / float(100)) / float(time.time() - timeOfLastMeasurement)
             print(str(velocity) + " m/s")
             timeOfLastMeasurement = time.time()

@@ -4,7 +4,7 @@ import math
 
 
 MULTIPLIER = 17150
-WAITTIME = 0.125
+WAITTIME = 0.0
 
 TRIG = [16, 38, 35, 13]
 ECHO = [18, 36, 37, 11]

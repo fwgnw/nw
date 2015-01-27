@@ -118,11 +118,6 @@ def timeFromDistance(distance):
     return distance / float(MULTIPLIER)
 
 
-def testdrive():
-    GPIO.output(MOTOR[0], True)
-    time.sleep(10)
-    GPIO.output(MOTOR[0], False)
-
 def driveForward():
     GPIO.output(MOTOR[0], True)
     drivingForward = True
@@ -153,13 +148,13 @@ def stopsteer():
     GPIO.output(MOTOR[2], False)
     GPIO.output(MOTOR[3], False)
 
-def brake():
+def brake(direction):
     BRAKETIME = 1
-    if drivingForward:
+    if direction:
         print("driving BACKWARD")
         driveBackward()
         time.sleep(BRAKETIME)
-    elif drivingBackward:
+    else:
         print("driving FORWARD")
         driveForward()
         time.sleep(BRAKETIME)
@@ -187,7 +182,7 @@ def drive1():
     while RESULT[0] > timeFromDistance(100):  #while distance is larger than 1m
         measure(0)
         check_results()
-    brake()
+    brake(drivingForward)
 
 setup()
 

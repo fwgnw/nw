@@ -175,7 +175,9 @@ def steertest():
 
 
 def drive1():
-    time.sleep(8)
+    for i in range(8):
+        time.sleep(1)
+        print(8 - i)
     driveForward()
     measure(0)
     check_results()

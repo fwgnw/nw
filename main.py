@@ -193,6 +193,14 @@ def drive1():
         check_results()
     brake()
 
+
+def drive2():
+    driveForward()
+    time.sleep(0.5)
+    turn()
+    stopdrive()
+
+
 setup()
 
 drive1()

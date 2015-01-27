@@ -58,7 +58,7 @@ def measure(i):
             break
 
     if time.time() - msr_start > 0.05:
-        RESULT[i] = -1
+        RESULT[i] = 1
     else:
         RESULT[i] = pulse_end - pulse_start
 

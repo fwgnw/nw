@@ -155,11 +155,11 @@ def stopsteer():
 
 def brake():
     BRAKETIME = 1
-    if (drivingForward == True):
+    if drivingForward == True:
         print("driving BACKWARD")
         driveBackward()
         time.sleep(BRAKETIME)
-    elif (drivingBackward == True):
+    elif drivingBackward == True:
         print("driving FORWARD")
         driveForward()
         time.sleep(BRAKETIME)

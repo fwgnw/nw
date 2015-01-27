@@ -16,9 +16,7 @@ MOTOR = [29, 31, 32, 33]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
 LOGFILE = "log/main_" + str(int(time.time())) + ".log"
 
-global drivingForward
 drivingForward = False
-global drivingBackward
 drivingBackward = False
 
 measurements = 0
@@ -121,18 +119,24 @@ def timeFromDistance(distance):
 
 
 def driveForward():
+    global drivingForward
+    global drivingBackward
     GPIO.output(MOTOR[0], True)
     drivingForward = True
     GPIO.output(MOTOR[1], False)
     drivingBackward = False
 
 def driveBackward():
+    global drivingForward
+    global drivingBackward
     GPIO.output(MOTOR[0], False)
     drivingForward = False
     GPIO.output(MOTOR[1], True)
     drivingBackward = True
 
 def stopdrive():
+    global drivingForward
+    global drivingBackward
     GPIO.output(MOTOR[0], False)
     drivingForward = False
     GPIO.output(MOTOR[1], False)

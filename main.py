@@ -5,6 +5,7 @@ import math
 
 MULTIPLIER = 17150
 WAITTIME = 0.125
+MAX_DIFFERENCE = 20
 
 TRIG = [16, 38, 35, 13]
 ECHO = [18, 36, 37, 11]
@@ -96,14 +97,14 @@ def check_results():
             if len(DATA[i]) >= 1 and RESULT[i] > 0:
                 n = DATA[i][len(DATA[i]) - 1]
 
-                if math.fabs(RESULT[i] - n) > math.fabs(n) / 100.0 * 10:
+                if math.fabs(RESULT[i] - n) > math.fabs(n) / 100.0 * MAX_DIFFERENCE:
                     if WDATA[i][0] == 0:
                         WDATA[i][0] = n
                     elif WDATA[i][1] == 0:
                         WDATA[i][1] = n
                     else:
-                        if math.fabs(n - WDATA[i][0]) < math.fabs(WDATA[i][0]) / 100.0 * 10:
-                            if math.fabs(n - WDATA[i][1]) < math.fabs(WDATA[i][1]) / 100.0 * 10:
+                        if math.fabs(n - WDATA[i][0]) < math.fabs(WDATA[i][0]) / 100.0 * MAX_DIFFERENCE:
+                            if math.fabs(n - WDATA[i][1]) < math.fabs(WDATA[i][1]) / 100.0 * MAX_DIFFERENCE:
                                 save_result(i, file)
                             else:
                                 clear_wdata(i)

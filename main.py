@@ -155,7 +155,7 @@ def stopsteer():
     GPIO.output(MOTOR[3], False)
 
 def brake():
-    BRAKETIME = 1
+    BRAKETIME = 0.1
     if drivingForward:
         print("driving BACKWARD")
         driveBackward()

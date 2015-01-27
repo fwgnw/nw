@@ -155,6 +155,7 @@ def stopsteer():
 
 def brake():
     BRAKETIME = 1
+    print("BREAKING!")
     if (drivingForward):
         print("driving BACKWARD")
         driveBackward()

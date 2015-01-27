@@ -93,6 +93,7 @@ def save_result(i, file):
 
 
 def check_results():
+    global timeOfLastMeasurement
     with open(LOGFILE, "a+") as file:
         for i in range(len(RESULT)):
             if len(DATA[i]) >= 1 and RESULT[i] > 0:

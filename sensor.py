@@ -49,15 +49,15 @@ def measure(i):
 
     while GPIO.input(ECHO[i]) == 0:
         pulse_start = time.time()
-        if time.time() - msr_start > 0.5:
+        if time.time() - msr_start > 0.05:
             break
 
     while GPIO.input(ECHO[i]) == 1:
         pulse_end = time.time()
-        if time.time() - msr_start > 0.5:
+        if time.time() - msr_start > 0.05:
             break
 
-    if time.time() - msr_start > 0.5:
+    if time.time() - msr_start > 0.05:
         RESULT[i] = -1
     else:
         RESULT[i] = pulse_end - pulse_start

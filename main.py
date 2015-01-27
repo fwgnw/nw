@@ -114,14 +114,13 @@ def check_results():
                             clear_wdata(i)
                 else:
                     save_result(i, file)
+                
+                velocity = ((n - WDATA[i][0]) / float(100)) / float(time.time() - timeOfLastMeasurement)
+                print(str(velocity) + " m/s")
+                timeOfLastMeasurement = time.time()
             elif RESULT[i] > 0:
                 save_result(i, file)
                 file.write("\n")
-
-            n = DATA[i][len(DATA[i]) - 1]
-            velocity = ((n - WDATA[i][0]) / float(100)) / float(time.time() - timeOfLastMeasurement)
-            print(str(velocity) + " m/s")
-            timeOfLastMeasurement = time.time()
 
 
 def timeFromDistance(distance):

@@ -23,6 +23,9 @@ drivingBackward = False
 measurements = 0
 successful_measurements = [0, 0, 0, 0]
 
+timeOfLastMeasurement = 0
+velocity = 0
+
 
 def setup():
     GPIO.setwarnings(False)
@@ -61,7 +64,6 @@ def measure(i):
         if time.time() - msr_start > 0.025:
             break
 
-    start = time.time()
     if time.time() - msr_start > 0.025:
         RESULT[i] = 1
     else:
@@ -70,7 +72,6 @@ def measure(i):
     print("r " + str(RESULT[i] * MULTIPLIER) + " cm")
 
     time.sleep(WAITTIME)
-    print("5: " + str(time.time() - start))
 
 
 def print_result(i):
@@ -117,6 +118,10 @@ def check_results():
             elif RESULT[i] > 0:
                 save_result(i, file)
                 file.write("\n")
+
+            velocity = ((n - WDATA[i][0]) / float(100)) / float(time.time() - timeOfLastMeasurement)
+            print(str(velocity) + " m/s")
+            timeOfLastMeasurement = time.time()
 
 
 def timeFromDistance(distance):

@@ -65,6 +65,8 @@ def measure(i):
     else:
         RESULT[i] = pulse_end - pulse_start
 
+    print("r " + str(RESULT[i] * MULTIPLIER) + " cm")
+
     time.sleep(WAITTIME)
 
 

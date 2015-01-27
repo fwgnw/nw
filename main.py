@@ -4,7 +4,7 @@ import math
 
 
 MULTIPLIER = 17150
-WAITTIME = 0.125
+WAITTIME = 0.0
 MAX_DIFFERENCE = 20
 
 TRIG = [16, 38, 35, 13]
@@ -42,31 +42,24 @@ def setup():
 
 
 def measure(i):
-    start = time.time()
     GPIO.output(TRIG[i], True)
     time.sleep(0.00001)
     GPIO.output(TRIG[i], False)
-    print("1: " + str(time.time() - start))
 
     msr_start = time.time()
 
     pulse_start = -1
     pulse_end = 0
-    print("2: " + str(time.time() - msr_start))
 
-    start = time.time()
     while GPIO.input(ECHO[i]) == 0:
         pulse_start = time.time()
         if time.time() - msr_start > 0.025:
             break
-    print("3: " + str(time.time() - start))
 
-    start = time.time()
     while GPIO.input(ECHO[i]) == 1:
         pulse_end = time.time()
         if time.time() - msr_start > 0.025:
             break
-    print("4: " + str(time.time() - start))
 
     start = time.time()
     if time.time() - msr_start > 0.025:

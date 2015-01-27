@@ -175,6 +175,11 @@ def brake():
         time.sleep(BRAKETIME)
     stopdrive()
 
+def turn():
+    steerLeft()
+    time.sleep(140 / float(velocity))
+    stopsteer()
+
 
 def drive1():
     for i in range(8):

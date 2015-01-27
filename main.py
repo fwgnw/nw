@@ -157,7 +157,7 @@ def steertest():
 
 
 def drive1():
-    time.sleep(15)
+    time.sleep(8)
     driveForward()
     measure(0)
     check_results()
@@ -172,7 +172,7 @@ def drive1():
 
 
 def drive2():
-    time.sleep(15)
+    time.sleep(8)
     driveForward()
     time.sleep(1)
     stopdrive()

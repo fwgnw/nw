@@ -116,8 +116,8 @@ def check_results():
                     save_result(i, file)
 
                 if len(DATA[i]) >= 2:
-                    velocity = ((MULTIPLIER * DATA[i][len(DATA[i]) - 1] - MULTIPLIER * DATA[i][len(DATA[i]) - 2]) / float(100)) / float(time.time() - timeOfLastMeasurement)
-                    print(str(MULTIPLIER * DATA[i][len(DATA[i]) - 1]) + " m - " + str(MULTIPLIER * DATA[i][len(DATA[i]) - 2]) + " m")
+                    velocity = ((MULTIPLIER * DATA[i][len(DATA[i]) - 2] - MULTIPLIER * DATA[i][len(DATA[i]) - 1]) / float(100)) / float(time.time() - timeOfLastMeasurement)
+                    print(str(MULTIPLIER * DATA[i][len(DATA[i]) - 1]) + " cm - " + str(MULTIPLIER * DATA[i][len(DATA[i]) - 2]) + " cm")
                     print(str((MULTIPLIER * DATA[i][len(DATA[i]) - 1] - MULTIPLIER * DATA[i][len(DATA[i]) - 2]) / float(100)) + " m / " + str(float(time.time() - timeOfLastMeasurement)) + " s")
                     print(str(velocity))
 

@@ -87,7 +87,7 @@ def clear_wdata(i):
 
 def save_result(i, file):
     DATA[i].append(RESULT[i])
-    file.write(str(round(RESULT[i] * MULTIPLIER, 2)) + "\n")
+    #file.write(str(round(RESULT[i] * MULTIPLIER, 2)) + "\n")
     clear_wdata(i)
     successful_measurements[i] += 1
     print_result(i)

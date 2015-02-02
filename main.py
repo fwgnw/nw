@@ -180,8 +180,8 @@ def brake():
         time.sleep(BRAKETIME)
     stopdrive()
 
-def turn():
-    angle = (45) / float(180) * 3.141592653
+def turn(a):
+    angle = (a) / float(180) * 3.141592653
     #radius = 61
     radius = 105
     line = (radius * angle) / float(100)
@@ -233,7 +233,7 @@ def drive3():
             check_results()
         #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
         #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] MAKE TURN...\n")
-        turn()
+        turn(75)
         #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] FINISHED TURN...\n")
         #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
         measure(0)

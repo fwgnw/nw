@@ -223,27 +223,28 @@ def drive2():
 
 
 def drive3():
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START DRIVING...\n")
-        driveForward()
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
+    angle = int(input())
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START DRIVING...\n")
+    driveForward()
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
+    measure(0)
+    check_results()
+    while RESULT[0] > timeFromDistance(150):  #while distance is larger than 64 cm
         measure(0)
         check_results()
-        while RESULT[0] > timeFromDistance(150):  #while distance is larger than 64 cm
-            measure(0)
-            check_results()
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] MAKE TURN...\n")
-        turn(75)
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] FINISHED TURN...\n")
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] MAKE TURN...\n")
+    turn(angle)
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] FINISHED TURN...\n")
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
+    measure(0)
+    check_results()
+    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
         measure(0)
         check_results()
-        while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
-            measure(0)
-            check_results()
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] BRAKING...\n")
-        brake()
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
+    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] BRAKING...\n")
+    brake()
 
 
 setup()

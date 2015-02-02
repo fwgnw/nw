@@ -125,7 +125,7 @@ def check_results():
                 timeOfLastMeasurement = time.time()
             elif RESULT[i] > 0:
                 save_result(i, file)
-                file.write("\n")
+                #file.write("\n")
 
 
 def timeFromDistance(distance):

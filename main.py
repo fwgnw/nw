@@ -180,6 +180,7 @@ def brake():
     stopdrive()
 
 def turn():
+    print(str(velocity) + " m/s")
     if not velocity == 0:
         steerLeft()
         time.sleep(2)

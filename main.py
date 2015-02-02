@@ -118,9 +118,6 @@ def check_results():
 
                 if len(DATA[i]) >= 2:
                     velocity = ((MULTIPLIER * DATA[i][len(DATA[i]) - 2] - MULTIPLIER * DATA[i][len(DATA[i]) - 1]) / float(100)) / float(time.time() - timeOfLastMeasurement)
-                    print(str(MULTIPLIER * DATA[i][len(DATA[i]) - 1]) + " cm - " + str(MULTIPLIER * DATA[i][len(DATA[i]) - 2]) + " cm")
-                    print(str((MULTIPLIER * DATA[i][len(DATA[i]) - 1] - MULTIPLIER * DATA[i][len(DATA[i]) - 2]) / float(100)) + " m / " + str(float(time.time() - timeOfLastMeasurement)) + " s")
-                    print(str(velocity))
 
                 timeOfLastMeasurement = time.time()
             elif RESULT[i] > 0:
@@ -181,6 +178,7 @@ def brake():
     stopdrive()
 
 def turn(a):
+    print("ANGLE = " + str(angle))
     angle = (a) / float(180) * 3.141592653
     #radius = 61
     radius = 105
@@ -195,7 +193,6 @@ def turn(a):
     if velocity > 0:
         steerLeft()
         #time.sleep(0.5)
-        print(str(line / float(velocity)) + " s")
         time.sleep(line / float(velocity))
         stopsteer()
 

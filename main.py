@@ -77,7 +77,7 @@ def print_result(i):
     distance = RESULT[i] * MULTIPLIER
     distance = round(distance, 2)
 
-    print("distance[" + str(i) + "] = " + str(distance) + " cm")
+    #print("distance[" + str(i) + "] = " + str(distance) + " cm")
 
 
 def clear_wdata(i):

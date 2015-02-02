@@ -188,7 +188,10 @@ def turn():
 
     with open(LOGFILE, "a+") as f:
         f.write("[" + str(datetime.now().time()) + "] velocity: " + str(velocity) + " m/s")
-        f.write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s")
+        if velocity != 0:
+            f.write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s")
+        else :
+            f.write("[" + str(datetime.now().time()) + "] time for turn: ERROR velocity=0")
 
     if velocity > 0:
         steerLeft()
@@ -221,7 +224,6 @@ def drive2():
 
 
 def drive3():
-    with open(LOGFILE, "a+") as f:
         f.write("[" + str(datetime.now().time()) + "] START DRIVING...")
         driveForward()
         f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...")

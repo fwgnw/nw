@@ -180,7 +180,7 @@ def brake():
     stopdrive()
 
 def turn():
-    angle = (90) / 180 * 3.141592653
+    angle = (90) / float(180) * 3.141592653
     radius = 61
     line = radius * angle
     if not velocity == 0:

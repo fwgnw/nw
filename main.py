@@ -222,8 +222,7 @@ def drive2():
     stopdrive()
 
 
-def drive3():
-    angle = int(input())
+def drive3(angle):
     #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START DRIVING...\n")
     driveForward()
     #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
@@ -249,8 +248,10 @@ def drive3():
 
 setup()
 
+angle = int(raw_input("angle: "))
+
 for i in range(8):
     print(8 - i)
     time.sleep(1)
 
-drive3()
+drive3(angle)

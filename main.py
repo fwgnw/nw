@@ -117,6 +117,7 @@ def check_results():
 
                 if len(DATA[i]) >= 2:
                     velocity = ((n - DATA[i][len(DATA[i]) - 2]) / float(100)) / float(time.time() - timeOfLastMeasurement) * 1000
+                    print(str(velocity))
 
                 timeOfLastMeasurement = time.time()
             elif RESULT[i] > 0:
@@ -177,10 +178,11 @@ def brake():
     stopdrive()
 
 def turn():
-    if not velocity == 0:
-        steerLeft()
-        time.sleep(140 / float(velocity))
-        stopsteer()
+    #if not velocity == 0:
+    steerLeft()
+    time.sleep(2)
+    #time.sleep(140 / float(velocity))
+    stopsteer()
 
 
 def drive1():
@@ -190,7 +192,7 @@ def drive1():
     driveForward()
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 1m
+    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
         measure(0)
         check_results()
     brake()

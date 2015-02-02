@@ -194,9 +194,6 @@ def turn():
 
 
 def drive1():
-    for i in range(8):
-        print(8 - i)
-        time.sleep(1)
     driveForward()
     measure(0)
     check_results()
@@ -219,5 +216,9 @@ def drive2():
 
 
 setup()
+
+for i in range(8):
+    print(8 - i)
+    time.sleep(1)
 
 drive2()

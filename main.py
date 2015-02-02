@@ -93,7 +93,7 @@ def save_result(i, file):
 
 
 def check_results():
-    global timeOfLastMeasurement
+    global timeOfLastMeasurement, velocity
     with open(LOGFILE, "a+") as file:
         for i in range(len(RESULT)):
             if len(DATA[i]) >= 1 and RESULT[i] > 0:
@@ -180,8 +180,6 @@ def brake():
     stopdrive()
 
 def turn():
-    global velocity
-    print(str(velocity) + " m/s")
     if not velocity == 0:
         steerLeft()
         time.sleep(2)

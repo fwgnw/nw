@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import math
+from datetime import datetime
 
 
 MULTIPLIER = 17150
@@ -184,10 +185,14 @@ def turn():
     #radius = 61
     radius = 105
     line = (radius * angle) / float(100)
+
+    with open(LOGFILE, "a+") as f:
+        f.write("[" + str(datetime.now().time()) + "] velocity: " + str(velocity) + " m/s")
+        f.write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s")
+
     if velocity > 0:
         steerLeft()
         #time.sleep(0.5)
-        print(str(line) + " / " + str(float(velocity)));
         print(str(line / float(velocity)) + " s")
         time.sleep(line / float(velocity))
         stopsteer()
@@ -216,19 +221,28 @@ def drive2():
 
 
 def drive3():
-    driveForward()
-    measure(0)
-    check_results()
-    while RESULT[0] > timeFromDistance(150):  #while distance is larger than 64 cm
+    with open(LOGFILE, "a+") as f:
+        f.write("[" + str(datetime.now().time()) + "] START DRIVING...")
+        driveForward()
+        f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...")
         measure(0)
         check_results()
-    turn()
-    measure(0)
-    check_results()
-    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
+        while RESULT[0] > timeFromDistance(150):  #while distance is larger than 64 cm
+            measure(0)
+            check_results()
+        f.write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...")
+        f.write("[" + str(datetime.now().time()) + "] MAKE TURN...")
+        turn()
+        f.write("[" + str(datetime.now().time()) + "] FINISHED TURN...")
+        f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...")
         measure(0)
         check_results()
-    stopdrive()
+        while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
+            measure(0)
+            check_results()
+        f.write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...")
+        f.write("[" + str(datetime.now().time()) + "] STOP DRIVING...")
+        stopdrive()
 
 
 setup()

@@ -182,7 +182,7 @@ def brake():
 def turn():
     angle = (90) / float(180) * 3.141592653
     #radius = 61
-    radius = 110
+    radius = 105
     line = (radius * angle) / float(100)
     if velocity > 0:
         steerLeft()

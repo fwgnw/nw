@@ -184,7 +184,7 @@ def turn():
     #radius = 61
     radius = 100
     line = (radius * angle) / float(100)
-    if not velocity == 0:
+    if velocity > 0:
         steerLeft()
         #time.sleep(0.5)
         print(str(line) + " / " + str(float(velocity)));

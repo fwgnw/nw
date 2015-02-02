@@ -187,11 +187,11 @@ def turn():
     line = (radius * angle) / float(100)
 
     with open(LOGFILE, "a+") as f:
-        f.write("[" + str(datetime.now().time()) + "] velocity: " + str(velocity) + " m/s")
+        f.write("[" + str(datetime.now().time()) + "] velocity: " + str(velocity) + " m/s\n")
         if velocity != 0:
-            f.write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s")
+            f.write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s\n")
         else :
-            f.write("[" + str(datetime.now().time()) + "] time for turn: ERROR velocity=0")
+            f.write("[" + str(datetime.now().time()) + "] time for turn: ERROR velocity=0\n")
 
     if velocity > 0:
         steerLeft()
@@ -225,27 +225,27 @@ def drive2():
 
 def drive3():
     with open(LOGFILE, "a+") as f:
-        f.write("[" + str(datetime.now().time()) + "] START DRIVING...")
+        f.write("[" + str(datetime.now().time()) + "] START DRIVING...\n")
         driveForward()
-        f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...")
+        f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
         measure(0)
         check_results()
         while RESULT[0] > timeFromDistance(150):  #while distance is larger than 64 cm
             measure(0)
             check_results()
-        f.write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...")
-        f.write("[" + str(datetime.now().time()) + "] MAKE TURN...")
+        f.write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
+        f.write("[" + str(datetime.now().time()) + "] MAKE TURN...\n")
         turn()
-        f.write("[" + str(datetime.now().time()) + "] FINISHED TURN...")
-        f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...")
+        f.write("[" + str(datetime.now().time()) + "] FINISHED TURN...\n")
+        f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
         measure(0)
         check_results()
         while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
             measure(0)
             check_results()
-        f.write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...")
-        f.write("[" + str(datetime.now().time()) + "] STOP DRIVING...")
-        stopdrive()
+        f.write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
+        f.write("[" + str(datetime.now().time()) + "] BRAKING...\n")
+        brake()
 
 
 setup()

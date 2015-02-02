@@ -180,10 +180,13 @@ def brake():
     stopdrive()
 
 def turn():
+    angle = (90) / 180 * 3.141592653
+    radius = 61
+    line = radius * angle
     if not velocity == 0:
         steerLeft()
-        time.sleep(0.5)
-        #time.sleep(140 / float(velocity))
+        #time.sleep(0.5)
+        time.sleep(line / float(velocity))
         stopsteer()
 
 

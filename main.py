@@ -186,7 +186,7 @@ def turn():
     if not velocity == 0:
         steerLeft()
         #time.sleep(0.5)
-        print(str(line) + " / " + float(velocity));
+        print(str(line) + " / " + str(float(velocity)));
         print(str(line / float(velocity)) + " s")
         time.sleep(line / float(velocity))
         stopsteer()

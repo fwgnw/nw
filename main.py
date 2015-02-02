@@ -224,6 +224,7 @@ def drive2():
 
 
 def drive3():
+    with open(LOGFILE, "a+") as f:
         f.write("[" + str(datetime.now().time()) + "] START DRIVING...")
         driveForward()
         f.write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...")

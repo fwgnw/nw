@@ -182,7 +182,7 @@ def brake():
 def turn():
     if not velocity == 0:
         steerLeft()
-        time.sleep(2)
+        time.sleep(0.5)
         #time.sleep(140 / float(velocity))
         stopsteer()
 

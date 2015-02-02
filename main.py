@@ -215,6 +215,22 @@ def drive2():
     stopdrive()
 
 
+def drive3():
+    driveForward()
+    measure(0)
+    check_results()
+    while RESULT[0] > timeFromDistance(150):  #while distance is larger than 64 cm
+        measure(0)
+        check_results()
+    turn()
+    measure(0)
+    check_results()
+    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
+        measure(0)
+        check_results()
+    stopdrive()
+
+
 setup()
 
 for i in range(8):

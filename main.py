@@ -181,7 +181,8 @@ def brake():
 
 def turn():
     angle = (90) / float(180) * 3.141592653
-    radius = 61
+    #radius = 61
+    radius = 100
     line = (radius * angle) / float(100)
     if not velocity == 0:
         steerLeft()
@@ -210,7 +211,7 @@ def drive2():
     start = time.time()
     measure(0)
     check_results()
-    while (time.time() - start) < 0.5:  #while distance is larger than 1m
+    while (time.time() - start) < 1:  #while distance is larger than 1m
         measure(0)
         check_results()
     turn()

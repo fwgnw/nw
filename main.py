@@ -178,7 +178,7 @@ def brake():
     stopdrive()
 
 def turn(a):
-    print("ANGLE = " + str(angle))
+    print("ANGLE = " + str(a))
     angle = (a) / float(180) * 3.141592653
     #radius = 61
     radius = 105

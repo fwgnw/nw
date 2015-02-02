@@ -181,9 +181,9 @@ def turn(a):
     global timeOfLastMeasurement, velocity
     i = 0
     if len(DATA[i]) >= 2:
-        open(LOGFILE, "a+").write(str(MULTIPLIER * DATA[i][len(DATA[i]) - 2]) + " cm - " + str(MULTIPLIER * DATA[i][len(DATA[i]) - 1]) + " cm")
-        open(LOGFILE, "a+").write(str(float(time.time() - timeOfLastMeasurement)) + " s")
-        open(LOGFILE, "a+").write("velocity: " + str(velocity))
+        open(LOGFILE, "a+").write(str(MULTIPLIER * DATA[i][len(DATA[i]) - 2]) + " cm - " + str(MULTIPLIER * DATA[i][len(DATA[i]) - 1]) + " cm\n")
+        open(LOGFILE, "a+").write(str(float(time.time() - timeOfLastMeasurement)) + " s\n")
+        open(LOGFILE, "a+").write("velocity: " + str(velocity) + "\n")
 
     angle = (a) / float(180) * 3.141592653
     #radius = 61

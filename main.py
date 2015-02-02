@@ -117,8 +117,6 @@ def check_results():
 
                 if len(DATA[i]) >= 2:
                     velocity = ((n - DATA[i][len(DATA[i]) - 2]) / float(100)) / float(time.time() - timeOfLastMeasurement) * 1000
-                    print(str((time.time() - timeOfLastMeasurement) * 1000))
-                    print(str(velocity) + " m/s")
 
                 timeOfLastMeasurement = time.time()
             elif RESULT[i] > 0:
@@ -179,9 +177,10 @@ def brake():
     stopdrive()
 
 def turn():
-    steerLeft()
-    time.sleep(140 / float(velocity))
-    stopsteer()
+    if not velocity == 0:
+        steerLeft()
+        time.sleep(140 / float(velocity))
+        stopsteer()
 
 
 def drive1():

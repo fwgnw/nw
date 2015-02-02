@@ -116,7 +116,7 @@ def check_results():
                     save_result(i, file)
 
                 velocity = ((n - WDATA[i][0]) / float(100)) / float(time.time() - timeOfLastMeasurement) * 1000
-                print(str(time.time()))
+                print(str((time.time() - timeOfLastMeasurement) * 1000))
                 print(str(velocity) + " m/s")
                 timeOfLastMeasurement = time.time()
             elif RESULT[i] > 0:

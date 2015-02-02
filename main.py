@@ -178,17 +178,16 @@ def brake():
     stopdrive()
 
 def turn(a):
-    print("ANGLE = " + str(a))
     angle = (a) / float(180) * 3.141592653
     #radius = 61
     radius = 105
     line = (radius * angle) / float(100)
 
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] velocity: " + str(velocity) + " m/s\n")
-    #if velocity != 0:
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s\n")
-    #else :
-        #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] time for turn: ERROR velocity=0\n")
+    open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] velocity: " + str(velocity) + " m/s\n")
+    if velocity != 0:
+        open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s\n")
+    else :
+        open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] time for turn: ERROR velocity=0\n")
 
     if velocity > 0:
         steerLeft()

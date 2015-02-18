@@ -252,7 +252,7 @@ def drive3(angle):
 setup()
 
 #angle = int(raw_input("angle: "))
-t = float(raw_input("brake_time: "))
+t = float(input("brake_time: "))
 
 for i in range(8):
     print(8 - i)

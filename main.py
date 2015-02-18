@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+import RPi.GPIO as gpio
 import time
 import math
 from datetime import datetime
@@ -29,38 +29,38 @@ velocity = 0
 
 
 def setup():
-    GPIO.setwarnings(False)
-    GPIO.cleanup()
-    GPIO.setmode(GPIO.BOARD)
+    gpio.setwarnings(False)
+    gpio.cleanup()
+    gpio.setmode(gpio.BOARD)
 
     for trig in TRIG:
-        GPIO.setup(trig, GPIO.OUT)
-        GPIO.output(trig, False)
+        gpio.setup(trig, gpio.OUT)
+        gpio.output(trig, False)
 
     for echo in ECHO:
-        GPIO.setup(echo, GPIO.IN)
+        gpio.setup(echo, gpio.IN)
 
     for motor in MOTOR:
-        GPIO.setup(motor, GPIO.OUT)
-        GPIO.output(motor, False)
+        gpio.setup(motor, gpio.OUT)
+        gpio.output(motor, False)
 
 
 def measure(i):
-    GPIO.output(TRIG[i], True)
+    gpio.output(TRIG[i], True)
     time.sleep(0.00001)
-    GPIO.output(TRIG[i], False)
+    gpio.output(TRIG[i], False)
 
     msr_start = time.time()
 
     pulse_start = -1
     pulse_end = 0
 
-    while GPIO.input(ECHO[i]) == 0:
+    while gpio.input(ECHO[i]) == 0:
         pulse_start = time.time()
         if time.time() - msr_start > 0.025:
             break
 
-    while GPIO.input(ECHO[i]) == 1:
+    while gpio.input(ECHO[i]) == 1:
         pulse_end = time.time()
         if time.time() - msr_start > 0.025:
             break
@@ -132,38 +132,38 @@ def timeFromDistance(distance):
 def driveForward():
     global drivingForward
     global drivingBackward
-    GPIO.output(MOTOR[0], True)
+    gpio.output(MOTOR[0], True)
     drivingForward = True
-    GPIO.output(MOTOR[1], False)
+    gpio.output(MOTOR[1], False)
     drivingBackward = False
 
 def driveBackward():
     global drivingForward
     global drivingBackward
-    GPIO.output(MOTOR[0], False)
+    gpio.output(MOTOR[0], False)
     drivingForward = False
-    GPIO.output(MOTOR[1], True)
+    gpio.output(MOTOR[1], True)
     drivingBackward = True
 
 def stopdrive():
     global drivingForward
     global drivingBackward
-    GPIO.output(MOTOR[0], False)
+    gpio.output(MOTOR[0], False)
     drivingForward = False
-    GPIO.output(MOTOR[1], False)
+    gpio.output(MOTOR[1], False)
     drivingBackward = False
 
 def steerLeft():
-    GPIO.output(MOTOR[2], False)
-    GPIO.output(MOTOR[3], True)
+    gpio.output(MOTOR[2], False)
+    gpio.output(MOTOR[3], True)
 
 def steerRight():
-    GPIO.output(MOTOR[2], True)
-    GPIO.output(MOTOR[3], False)
+    gpio.output(MOTOR[2], True)
+    gpio.output(MOTOR[3], False)
 
 def stopsteer():
-    GPIO.output(MOTOR[2], False)
-    GPIO.output(MOTOR[3], False)
+    gpio.output(MOTOR[2], False)
+    gpio.output(MOTOR[3], False)
 
 def brake():
     BRAKETIME = 0.15

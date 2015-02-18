@@ -203,11 +203,11 @@ def turn(a):
         stopsteer()
 
 
-def drive1(t):
+def drive1(t, d):
     driveForward()
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(48):  #while distance is larger than 64 cm
+    while RESULT[0] > timeFromDistance(d):  #while distance is larger than 64 cm
         measure(0)
         check_results()
     brake(t)
@@ -253,10 +253,11 @@ setup()
 
 #angle = int(raw_input("angle: "))
 t = float(input("brake_time: "))
+d = float(input("distance: "))
 
 for i in range(8):
     print(8 - i)
     time.sleep(1)
 
 #drive3(angle)
-drive1(t)
+drive1(t, d)

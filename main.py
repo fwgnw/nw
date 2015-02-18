@@ -207,7 +207,7 @@ def drive1(t):
     driveForward()
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(32):  #while distance is larger than 64 cm
+    while RESULT[0] > timeFromDistance(48):  #while distance is larger than 64 cm
         measure(0)
         check_results()
     brake(t)

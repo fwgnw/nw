@@ -251,10 +251,11 @@ def drive3(angle):
 
 setup()
 
-angle = int(raw_input("angle: "))
+#angle = int(raw_input("angle: "))
 
 for i in range(8):
     print(8 - i)
     time.sleep(1)
 
-drive3(angle)
+#drive3(angle)
+drive1()

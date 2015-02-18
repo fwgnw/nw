@@ -207,7 +207,7 @@ def drive1():
     driveForward()
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
+    while RESULT[0] > timeFromDistance(20):  #while distance is larger than 64 cm
         measure(0)
         check_results()
     brake()
@@ -241,7 +241,7 @@ def drive3(angle):
     #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(20):  #while distance is larger than 64 cm
+    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
         measure(0)
         check_results()
     #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")

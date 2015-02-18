@@ -165,8 +165,8 @@ def stopsteer():
     GPIO.output(MOTOR[2], False)
     GPIO.output(MOTOR[3], False)
 
-def brake():
-    BRAKETIME = 0.3
+def brake(t):
+    BRAKETIME = t
     if drivingForward:
         print("driving BACKWARD")
         driveBackward()
@@ -203,14 +203,14 @@ def turn(a):
         stopsteer()
 
 
-def drive1():
+def drive1(t):
     driveForward()
     measure(0)
     check_results()
     while RESULT[0] > timeFromDistance(32):  #while distance is larger than 64 cm
         measure(0)
         check_results()
-    brake()
+    brake(t)
 
 
 def drive2():
@@ -252,10 +252,11 @@ def drive3(angle):
 setup()
 
 #angle = int(raw_input("angle: "))
+t = float(raw_input("brake_time: "))
 
 for i in range(8):
     print(8 - i)
     time.sleep(1)
 
 #drive3(angle)
-drive1()
+drive1(t)

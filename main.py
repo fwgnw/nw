@@ -87,7 +87,6 @@ def clear_wdata(i):
 
 def save_result(i, file):
     DATA[i].append(RESULT[i])
-    #file.write(str(round(RESULT[i] * MULTIPLIER, 2)) + "\n")
     clear_wdata(i)
     successful_measurements[i] += 1
     print_result(i)
@@ -122,7 +121,6 @@ def check_results():
                 timeOfLastMeasurement = time.time()
             elif RESULT[i] > 0:
                 save_result(i, file)
-                #file.write("\n")
 
 
 def timeFromDistance(distance):
@@ -198,7 +196,6 @@ def turn(a):
 
     if velocity > 0:
         steerLeft()
-        #time.sleep(0.5)
         time.sleep(line / float(velocity))
         stopsteer()
 
@@ -207,7 +204,7 @@ def drive1(t, d):
     driveForward()
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(d):  #while distance is larger than 64 cm
+    while RESULT[0] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
         check_results()
     brake(t)
@@ -218,7 +215,7 @@ def drive2():
     start = time.time()
     measure(0)
     check_results()
-    while (time.time() - start) < 1:  #while distance is larger than 1m
+    while (time.time() - start) < 1:  #for 1s
         measure(0)
         check_results()
     turn()
@@ -226,26 +223,18 @@ def drive2():
 
 
 def drive3(angle):
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START DRIVING...\n")
     driveForward()
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(150):  #while distance is larger than 64 cm
+    while RESULT[0] > timeFromDistance(150):  #while distance is larger than 150 cm
         measure(0)
         check_results()
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] MAKE TURN...\n")
     turn(angle)
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] FINISHED TURN...\n")
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] START MEASURING FRONT...\n")
     measure(0)
     check_results()
     while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
         measure(0)
         check_results()
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] STOP MEASURING FRONT...\n")
-    #open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] BRAKING...\n")
     brake()
 
 
@@ -259,5 +248,4 @@ for i in range(8):
     print(8 - i)
     time.sleep(1)
 
-#drive3(angle)
 drive1(t, d)

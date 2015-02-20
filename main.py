@@ -23,9 +23,6 @@ ERR_TEXT = ["", "INF: ", "ERR: "]
 drivingForward = False
 drivingBackward = False
 
-measurements = 0
-successful_measurements = [0, 0, 0, 0]
-
 velocity = 0
 
 
@@ -97,7 +94,6 @@ def save_result(i):
     DATA[i].append(RESULT[i][0])
     TIME[i].append(RESULT[i][1])
     clear_wdata(i)
-    successful_measurements[i] += 1
     print_result(i)
 
 

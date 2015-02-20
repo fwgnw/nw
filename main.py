@@ -10,13 +10,14 @@ MAX_DIFFERENCE = 20
 
 TRIG = [16, 38, 35, 13]
 ECHO = [18, 36, 37, 11]
-RESULT = [0, 0, 0, 0]
+RESULT = [[0, 0], [0, 0], [0, 0], [0, 0]]
 DATA = [[], [], [], []]  #0: front, 1: left, 2: back, 3: right
+TIME = [[], [], [], []]
 WDATA = [[0, 0], [0, 0], [0, 0], [0, 0]]
 
 MOTOR = [29, 31, 32, 33]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
-LOGFILE = "log/main_" + str(int(time.time())) + ".log"
+LOGFILE = "main.log"
 ERR_TEXT = ["", "INF: ", "ERR: "]
 
 drivingForward = False
@@ -72,15 +73,17 @@ def measure(i):
             break
 
     if time.time() - msr_start > 0.025:
-        RESULT[i] = 1
+        RESULT[i][0] = -1
+        RESULT[i][1] = pulse_end
     else:
-        RESULT[i] = pulse_end - pulse_start
+        RESULT[i][0] = pulse_end - pulse_start
+        RESULT[i][1] = pulse_end
 
     time.sleep(WAITTIME)
 
 
 def print_result(i):
-    distance = RESULT[i] * MULTIPLIER
+    distance = RESULT[i][0] * MULTIPLIER
     distance = round(distance, 2)
 
     print("distance[" + str(i) + "] = " + str(distance) + " cm")
@@ -92,7 +95,8 @@ def clear_wdata(i):
 
 
 def save_result(i):
-    DATA[i].append(RESULT[i])
+    DATA[i].append(RESULT[i][0])
+    TIME[i].append(RESULT[i][1])
     clear_wdata(i)
     successful_measurements[i] += 1
     print_result(i)
@@ -101,10 +105,10 @@ def save_result(i):
 def check_results():
     global timeOfLastMeasurement, velocity
     for i in range(len(RESULT)):
-        if len(DATA[i]) >= 1 and RESULT[i] > 0:
+        if len(DATA[i]) >= 1 and RESULT[i][0] > 0:
             n = DATA[i][len(DATA[i]) - 1]
 
-            if math.fabs(RESULT[i] - n) > timeFromDistance(MAX_DIFFERENCE):
+            if math.fabs(RESULT[i][0] - n) > timeFromDistance(MAX_DIFFERENCE):
                 if WDATA[i][0] == 0:
                     WDATA[i][0] = n
                 elif WDATA[i][1] == 0:
@@ -113,10 +117,7 @@ def check_results():
                     if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE):
                         if math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
                             save_result(i)
-                        else:
-                            clear_wdata(i)
-                    else:
-                        clear_wdata(i)
+                    clear_wdata(i)
             else:
                 save_result(i)
 
@@ -124,8 +125,10 @@ def check_results():
                 velocity = ((MULTIPLIER * DATA[i][len(DATA[i]) - 2] - MULTIPLIER * DATA[i][len(DATA[i]) - 1]) / float(100)) / float(time.time() - timeOfLastMeasurement)
 
             timeOfLastMeasurement = time.time()
-        elif RESULT[i] > 0:
+        elif RESULT[i][0] > 0:
             save_result(i)
+        else:
+            log("wrong measurement[" + len(DATA[i]) - 1 + "] = " + RESULT[i][0] * MULTIPLIER, 2)
 
 
 def timeFromDistance(distance):
@@ -230,11 +233,11 @@ def drive1(t, d):
     driveForward()
     measure(0)
     check_results()
-    log("first measurement[0] = " + str(RESULT[0] * MULTIPLIER), 1)
-    while RESULT[0] > timeFromDistance(d):  #while distance is larger than d
+    log("first measurement[0] = " + str(RESULT[0][0] * MULTIPLIER), 1)
+    while RESULT[0][0] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
         check_results()
-    log("measurement[0] = " + str(RESULT[0] * MULTIPLIER) + " < ", 0)
+    log("measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " < ", 0)
     brake(t)
     log("stopped function drive1()", 0)
 
@@ -255,13 +258,13 @@ def drive3(angle):
     driveForward()
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(150):  #while distance is larger than 150 cm
+    while RESULT[0][0] > timeFromDistance(150):  #while distance is larger than 150 cm
         measure(0)
         check_results()
     turn(angle)
     measure(0)
     check_results()
-    while RESULT[0] > timeFromDistance(64):  #while distance is larger than 64 cm
+    while RESULT[0][0] > timeFromDistance(64):  #while distance is larger than 64 cm
         measure(0)
         check_results()
     brake()

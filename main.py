@@ -17,6 +17,7 @@ WDATA = [[0, 0], [0, 0], [0, 0], [0, 0]]
 MOTOR = [29, 31, 32, 33]  #0: engine+, 1: engine-, 2: steering+, 3: steering-
 
 LOGFILE = "log/main_" + str(int(time.time())) + ".log"
+ERR_TEXT = ["", "INF: ", "ERR: "]
 
 drivingForward = False
 drivingBackward = False
@@ -43,6 +44,11 @@ def setup():
     for motor in MOTOR:
         GPIO.setup(motor, GPIO.OUT)
         GPIO.output(motor, False)
+
+
+def log(text, errlvl):
+    with open(LOGFILE, "a+") as f:
+        f.write("[" + datetime.now() + "] " + ERR_TEXT[errlvl] + text)
 
 
 def measure(i):
@@ -85,7 +91,7 @@ def clear_wdata(i):
         WDATA[i][n] = 0
 
 
-def save_result(i, file):
+def save_result(i):
     DATA[i].append(RESULT[i])
     clear_wdata(i)
     successful_measurements[i] += 1
@@ -94,33 +100,32 @@ def save_result(i, file):
 
 def check_results():
     global timeOfLastMeasurement, velocity
-    with open(LOGFILE, "a+") as file:
-        for i in range(len(RESULT)):
-            if len(DATA[i]) >= 1 and RESULT[i] > 0:
-                n = DATA[i][len(DATA[i]) - 1]
+    for i in range(len(RESULT)):
+        if len(DATA[i]) >= 1 and RESULT[i] > 0:
+            n = DATA[i][len(DATA[i]) - 1]
 
-                if math.fabs(RESULT[i] - n) > timeFromDistance(MAX_DIFFERENCE):
-                    if WDATA[i][0] == 0:
-                        WDATA[i][0] = n
-                    elif WDATA[i][1] == 0:
-                        WDATA[i][1] = n
-                    else:
-                        if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE):
-                            if math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
-                                save_result(i, file)
-                            else:
-                                clear_wdata(i)
+            if math.fabs(RESULT[i] - n) > timeFromDistance(MAX_DIFFERENCE):
+                if WDATA[i][0] == 0:
+                    WDATA[i][0] = n
+                elif WDATA[i][1] == 0:
+                    WDATA[i][1] = n
+                else:
+                    if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE):
+                        if math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
+                            save_result(i)
                         else:
                             clear_wdata(i)
-                else:
-                    save_result(i, file)
+                    else:
+                        clear_wdata(i)
+            else:
+                save_result(i)
 
-                if len(DATA[i]) >= 2:
-                    velocity = ((MULTIPLIER * DATA[i][len(DATA[i]) - 2] - MULTIPLIER * DATA[i][len(DATA[i]) - 1]) / float(100)) / float(time.time() - timeOfLastMeasurement)
+            if len(DATA[i]) >= 2:
+                velocity = ((MULTIPLIER * DATA[i][len(DATA[i]) - 2] - MULTIPLIER * DATA[i][len(DATA[i]) - 1]) / float(100)) / float(time.time() - timeOfLastMeasurement)
 
-                timeOfLastMeasurement = time.time()
-            elif RESULT[i] > 0:
-                save_result(i, file)
+            timeOfLastMeasurement = time.time()
+        elif RESULT[i] > 0:
+            save_result(i)
 
 
 def timeFromDistance(distance):
@@ -163,7 +168,9 @@ def stopsteer():
     GPIO.output(MOTOR[2], False)
     GPIO.output(MOTOR[3], False)
 
+
 def brake(t):
+    log("started braking", 0)
     BRAKETIME = t
     if drivingForward:
         print("driving BACKWARD")
@@ -174,6 +181,8 @@ def brake(t):
         driveForward()
         time.sleep(BRAKETIME)
     stopdrive()
+    log("stopped braking", 0)
+
 
 def turn(a):
     global timeOfLastMeasurement, velocity
@@ -200,14 +209,34 @@ def turn(a):
         stopsteer()
 
 
+def countdown(t):
+    log("started countdown(" + str(t) + ")", 0)
+    for i in range(t):
+        print(t - i)
+        time.sleep(1)
+    log("stopped countdown", 0)
+
+
 def drive1(t, d):
+    log("started program main.py with function drive1()", 0)
+
+    t = float(input("brake_time: "))
+    log("set parameter t = " + str(t), 0)
+    d = float(input("distance: "))
+    log("set parameter d = " + str(d), 0)
+    countdown(8)
+    log("started driving", 0)
+
     driveForward()
     measure(0)
     check_results()
+    log("first measurement[0] = " + str(RESULT[0] * MULTIPLIER), 1)
     while RESULT[0] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
         check_results()
+    log("measurement[0] = " + str(RESULT[0] * MULTIPLIER) + " < ", 0)
     brake(t)
+    log("stopped function drive1()", 0)
 
 
 def drive2():
@@ -241,11 +270,6 @@ def drive3(angle):
 setup()
 
 #angle = int(raw_input("angle: "))
-t = float(input("brake_time: "))
-d = float(input("distance: "))
-
-for i in range(8):
-    print(8 - i)
-    time.sleep(1)
-
 drive1(t, d)
+
+log("stopped program main.py")

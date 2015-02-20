@@ -4,9 +4,9 @@ import math
 from datetime import datetime
 
 
-MULTIPLIER = 17150
+MULTIPLIER = 171.5
 WAITTIME = 0.0
-MAX_DIFFERENCE = 20
+MAX_DIFFERENCE = 0.2
 
 TRIG = [16, 38, 35, 13]
 ECHO = [18, 36, 37, 11]
@@ -26,7 +26,6 @@ drivingBackward = False
 measurements = 0
 successful_measurements = [0, 0, 0, 0]
 
-timeOfLastMeasurement = 0
 velocity = 0
 
 
@@ -86,7 +85,7 @@ def print_result(i):
     distance = RESULT[i][0] * MULTIPLIER
     distance = round(distance, 2)
 
-    print("distance[" + str(i) + "] = " + str(distance) + " cm")
+    print("distance[" + str(i) + "] = " + str(distance) + " m")
 
 
 def clear_wdata(i):
@@ -103,32 +102,32 @@ def save_result(i):
 
 
 def check_results():
-    global timeOfLastMeasurement, velocity
+    global velocity
     for i in range(len(RESULT)):
         if len(DATA[i]) >= 1 and RESULT[i][0] > 0:
             n = DATA[i][len(DATA[i]) - 1]
+            l = len(DATA[i])
 
             if math.fabs(RESULT[i][0] - n) > timeFromDistance(MAX_DIFFERENCE):
                 if WDATA[i][0] == 0:
-                    WDATA[i][0] = n
+                    WDATA[i][0] = RESULT[i][0]
                 elif WDATA[i][1] == 0:
-                    WDATA[i][1] = n
+                    WDATA[i][1] = RESULT[i][0]
                 else:
-                    if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE):
-                        if math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
-                            save_result(i)
+                    if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE) and math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
+                        save_result(i)
                     clear_wdata(i)
+                if not len(DATA[i]) > l:  #if value has not been saved in DATA
+                    log("deviant measurement[" + i + "] = " + RESULT[i][0] * MULTIPLIER + " m", 2)
             else:
                 save_result(i)
 
             if len(DATA[i]) >= 2:
-                velocity = ((MULTIPLIER * DATA[i][len(DATA[i]) - 2] - MULTIPLIER * DATA[i][len(DATA[i]) - 1]) / float(100)) / float(time.time() - timeOfLastMeasurement)
-
-            timeOfLastMeasurement = time.time()
+                velocity = (MULTIPLIER * (DATA[i][len(DATA[i]) - 2] - DATA[i][len(DATA[i]) - 1]) / float(TIME[i][len(TIME[i]) - 2] - TIME[i][len(TIME[i]) - 1])
         elif RESULT[i][0] > 0:
             save_result(i)
         else:
-            log("wrong measurement[" + len(DATA[i]) - 1 + "] = " + RESULT[i][0] * MULTIPLIER, 2)
+            log("wrong measurement[" + i + "] = " + RESULT[i][0] * MULTIPLIER + " m", 2)
 
 
 def timeFromDistance(distance):
@@ -188,23 +187,12 @@ def brake(t):
 
 
 def turn(a):
-    global timeOfLastMeasurement, velocity
-    i = 0
-    if len(DATA[i]) >= 2:
-        open(LOGFILE, "a+").write(str(MULTIPLIER * DATA[i][len(DATA[i]) - 2]) + " cm - " + str(MULTIPLIER * DATA[i][len(DATA[i]) - 1]) + " cm\n")
-        open(LOGFILE, "a+").write(str(float(time.time() - timeOfLastMeasurement)) + " s\n")
-        open(LOGFILE, "a+").write("velocity: " + str(velocity) + "\n")
+    global velocity
 
     angle = (a) / float(180) * 3.141592653
     #radius = 61
     radius = 105
     line = (radius * angle) / float(100)
-
-    open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] velocity: " + str(velocity) + " m/s\n")
-    if velocity != 0:
-        open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] time for turn: " + str(line / float(velocity)) + " s\n")
-    else :
-        open(LOGFILE, "a+").write("[" + str(datetime.now().time()) + "] time for turn: ERROR velocity=0\n")
 
     if velocity > 0:
         steerLeft()
@@ -220,7 +208,7 @@ def countdown(t):
     log("stopped countdown", 0)
 
 
-def drive1(t, d):
+def drive1():
     log("started program main.py with function drive1()", 0)
 
     t = float(input("brake_time: "))
@@ -233,11 +221,11 @@ def drive1(t, d):
     driveForward()
     measure(0)
     check_results()
-    log("first measurement[0] = " + str(RESULT[0][0] * MULTIPLIER), 1)
+    log("first measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " m", 1)
     while RESULT[0][0] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
         check_results()
-    log("measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " < ", 0)
+    log("measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " < d", 0)
     brake(t)
     log("stopped function drive1()", 0)
 
@@ -250,7 +238,7 @@ def drive2():
     while (time.time() - start) < 1:  #for 1s
         measure(0)
         check_results()
-    turn()
+    turn(90)
     stopdrive()
 
 
@@ -267,12 +255,12 @@ def drive3(angle):
     while RESULT[0][0] > timeFromDistance(64):  #while distance is larger than 64 cm
         measure(0)
         check_results()
-    brake()
+    brake(0.5)
 
 
 setup()
 
 #angle = int(raw_input("angle: "))
-drive1(t, d)
+drive1()
 
-log("stopped program main.py")
+log("stopped program main.py", 0)

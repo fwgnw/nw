@@ -44,7 +44,7 @@ def setup():
 
 
 def log(text, errlvl):
-    with open(LOGFILE, "a+") as f:
+    with open(LOGFILE, "w+") as f:
         f.write("[" + str(datetime.now()) + "] " + ERR_TEXT[errlvl] + text + '\n')
 
 

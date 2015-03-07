@@ -225,8 +225,7 @@ def drive1():
     driveForward()
     measure(0)
     check_results(0)
-    print(DATA) #DEl
-    log("first measurement[0] = " + str(DATA[0][len(DATA) - 1] * MULTIPLIER) + " m", 1)
+    log("first measurement[0] = " + str(DATA[0][len(DATA[0]) - 1] * MULTIPLIER) + " m", 1)
     while DATA[0][len(DATA) - 1] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
         check_results(0)

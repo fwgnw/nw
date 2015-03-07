@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import math
 from datetime import datetime
+import os
 
 
 MULTIPLIER = 171.5
@@ -42,9 +43,11 @@ def setup():
         GPIO.setup(motor, GPIO.OUT)
         GPIO.output(motor, False)
 
+    os.remove("./main.log")
+
 
 def log(text, errlvl):
-    with open(LOGFILE, "w+") as f:
+    with open(LOGFILE, "a+") as f:
         f.write("[" + str(datetime.now()) + "] " + ERR_TEXT[errlvl] + text + '\n')
 
 

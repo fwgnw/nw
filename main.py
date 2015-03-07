@@ -97,34 +97,38 @@ def save_result(i):
     print_result(i)
 
 
-def check_results():
-    global velocity
+def check_all_results():
     for i in range(len(RESULT)):
-        if len(DATA[i]) >= 1 and RESULT[i][0] > 0:
-            n = DATA[i][len(DATA[i]) - 1]
-            l = len(DATA[i])
+        check_results(i)
 
-            if math.fabs(RESULT[i][0] - n) > timeFromDistance(MAX_DIFFERENCE):
-                if WDATA[i][0] == 0:
-                    WDATA[i][0] = RESULT[i][0]
-                elif WDATA[i][1] == 0:
-                    WDATA[i][1] = RESULT[i][0]
-                else:
-                    if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE) and math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
-                        save_result(i)
-                    clear_wdata(i)
-                if not len(DATA[i]) > l:  #if value has not been saved in DATA
-                    log("deviant measurement[" + str(i) + "] = " + str(RESULT[i][0] * MULTIPLIER) + " m", 2)
+
+def check_results(i):
+    global velocity
+    if len(DATA[i]) >= 1 and RESULT[i][0] > 0:
+        n = DATA[i][len(DATA[i]) - 1]
+        l = len(DATA[i])
+
+        if math.fabs(RESULT[i][0] - n) > timeFromDistance(MAX_DIFFERENCE):
+            if WDATA[i][0] == 0:
+                WDATA[i][0] = RESULT[i][0]
+            elif WDATA[i][1] == 0:
+                WDATA[i][1] = RESULT[i][0]
             else:
-                save_result(i)
-
-            if len(DATA[i]) >= 2:
-                velocity = (MULTIPLIER * (DATA[i][len(DATA[i]) - 2] - DATA[i][len(DATA[i]) - 1]) /
-                        float(TIME[i][len(TIME[i]) - 2] - TIME[i][len(TIME[i]) - 1]))
-        elif RESULT[i][0] > 0:
-            save_result(i)
+                if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE) and math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
+                    save_result(i)
+                clear_wdata(i)
+            if not len(DATA[i]) > l:  #if value has not been saved in DATA
+                log("deviant measurement[" + str(i) + "] = " + str(RESULT[i][0] * MULTIPLIER) + " m", 2)
         else:
-            log("wrong measurement[" + str(i) + "] = " + str(RESULT[i][0] * MULTIPLIER) + " m", 2)
+            save_result(i)
+
+        if len(DATA[i]) >= 2:
+            velocity = (MULTIPLIER * (DATA[i][len(DATA[i]) - 2] - DATA[i][len(DATA[i]) - 1]) /
+                    float(TIME[i][len(TIME[i]) - 2] - TIME[i][len(TIME[i]) - 1]))
+    elif RESULT[i][0] > 0:
+        save_result(i)
+    elif len(DATA[i]) >= 1:
+        log("wrong measurement[" + str(i) + "] = " + str(RESULT[i][0] * MULTIPLIER) + " m", 2)
 
 
 def timeFromDistance(distance):
@@ -217,11 +221,11 @@ def drive1():
 
     driveForward()
     measure(0)
-    check_results()
+    check_results(0)
     log("first measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " m", 1)
     while RESULT[0][0] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
-        check_results()
+        check_results(0)
     log("measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " < d", 0)
     brake(t)
     log("stopped function drive1()", 0)
@@ -231,10 +235,10 @@ def drive2():
     driveForward()
     start = time.time()
     measure(0)
-    check_results()
+    check_results(0)
     while (time.time() - start) < 1:  #for 1s
         measure(0)
-        check_results()
+        check_results(0)
     turn(90)
     stopdrive()
 
@@ -242,16 +246,16 @@ def drive2():
 def drive3(angle):
     driveForward()
     measure(0)
-    check_results()
+    check_results(0)
     while RESULT[0][0] > timeFromDistance(150):  #while distance is larger than 150 cm
         measure(0)
-        check_results()
+        check_results(0)
     turn(angle)
     measure(0)
-    check_results()
+    check_results(0)
     while RESULT[0][0] > timeFromDistance(64):  #while distance is larger than 64 cm
         measure(0)
-        check_results()
+        check_results(0)
     brake(0.5)
 
 

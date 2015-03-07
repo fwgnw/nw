@@ -114,7 +114,7 @@ def check_results():
                         save_result(i)
                     clear_wdata(i)
                 if not len(DATA[i]) > l:  #if value has not been saved in DATA
-                    log("deviant measurement[" + i + "] = " + RESULT[i][0] * MULTIPLIER + " m", 2)
+                    log("deviant measurement[" + str(i) + "] = " + str(RESULT[i][0] * MULTIPLIER) + " m", 2)
             else:
                 save_result(i)
 
@@ -124,7 +124,7 @@ def check_results():
         elif RESULT[i][0] > 0:
             save_result(i)
         else:
-            log("wrong measurement[" + i + "] = " + RESULT[i][0] * MULTIPLIER + " m", 2)
+            log("wrong measurement[" + str(i) + "] = " + str(RESULT[i][0] * MULTIPLIER) + " m", 2)
 
 
 def timeFromDistance(distance):

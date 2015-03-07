@@ -117,6 +117,7 @@ def check_results(i):
             elif WDATA[i][1] == 0:
                 WDATA[i][1] = RESULT[i][0]
             else:
+                print(WDATA)
                 if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE) and math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
                     print("save")
                     save_result(i)

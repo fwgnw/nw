@@ -226,10 +226,10 @@ def drive1():
     measure(0)
     check_results(0)
     log("first measurement[0] = " + str(DATA[0][len(DATA[0]) - 1] * MULTIPLIER) + " m", 1)
-    while DATA[0][len(DATA) - 1] > timeFromDistance(d):  #while distance is larger than d
+    while DATA[0][len(DATA[0]) - 1] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
         check_results(0)
-    log("measurement[0] = " + str(DATA[0][len(DATA) - 1] * MULTIPLIER) + " < d", 0)
+    log("measurement[0] = " + str(DATA[0][len(DATA[0]) - 1] * MULTIPLIER) + " < d", 0)
     brake(t)
     log("stopped function drive1()", 0)
 

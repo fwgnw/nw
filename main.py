@@ -45,7 +45,7 @@ def setup():
 
 def log(text, errlvl):
     with open(LOGFILE, "a+") as f:
-        f.write("[" + str(datetime.now()) + "] " + ERR_TEXT[errlvl] + text)
+        f.write("[" + str(datetime.now()) + "] " + ERR_TEXT[errlvl] + text + '\n')
 
 
 def measure(i):

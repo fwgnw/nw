@@ -119,7 +119,8 @@ def check_results():
                 save_result(i)
 
             if len(DATA[i]) >= 2:
-                velocity = (MULTIPLIER * (DATA[i][len(DATA[i]) - 2] - DATA[i][len(DATA[i]) - 1]) / float(TIME[i][len(TIME[i]) - 2] - TIME[i][len(TIME[i]) - 1])
+                velocity = (MULTIPLIER * (DATA[i][len(DATA[i]) - 2] - DATA[i][len(DATA[i]) - 1]) /
+                        float(TIME[i][len(TIME[i]) - 2] - TIME[i][len(TIME[i]) - 1]))
         elif RESULT[i][0] > 0:
             save_result(i)
         else:

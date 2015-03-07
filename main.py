@@ -118,6 +118,7 @@ def check_results(i):
                 WDATA[i][1] = RESULT[i][0]
             else:
                 if math.fabs(n - WDATA[i][0]) < timeFromDistance(MAX_DIFFERENCE) and math.fabs(n - WDATA[i][1]) < timeFromDistance(MAX_DIFFERENCE):
+                    print("save")
                     save_result(i)
                 clear_wdata(i)
             if not len(DATA[i]) > l:  #if value has not been saved in DATA

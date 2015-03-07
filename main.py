@@ -108,7 +108,7 @@ def check_all_results():
 def check_results(i):
     global velocity
     if len(DATA[i]) >= 1 and RESULT[i][0] > 0:
-        n = DATA[i][len(DATA[i]) - 1]
+        n = DATA[i][len(DATA[i]) - 1]  #last successful measurement
         l = len(DATA[i])
 
         if math.fabs(RESULT[i][0] - n) > timeFromDistance(MAX_DIFFERENCE):
@@ -137,7 +137,7 @@ def check_results(i):
 
 
 def timeFromDistance(distance):
-    return distance / float(MULTIPLIER)
+    return distance / float(17150) #float(MULTIPLIER)
 
 
 def driveForward():

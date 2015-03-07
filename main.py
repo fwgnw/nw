@@ -222,11 +222,11 @@ def drive1():
     driveForward()
     measure(0)
     check_results(0)
-    log("first measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " m", 1)
-    while RESULT[0][0] > timeFromDistance(d):  #while distance is larger than d
+    log("first measurement[0] = " + str(DATA[0][len(DATA) - 1] * MULTIPLIER) + " m", 1)
+    while DATA[0][len(DATA) - 1] > timeFromDistance(d):  #while distance is larger than d
         measure(0)
         check_results(0)
-    log("measurement[0] = " + str(RESULT[0][0] * MULTIPLIER) + " < d", 0)
+    log("measurement[0] = " + str(DATA[0][len(DATA) - 1] * MULTIPLIER) + " < d", 0)
     brake(t)
     log("stopped function drive1()", 0)
 

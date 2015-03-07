@@ -127,7 +127,7 @@ def check_results(i):
                     float(TIME[i][len(TIME[i]) - 2] - TIME[i][len(TIME[i]) - 1]))
     elif RESULT[i][0] > 0:
         save_result(i)
-    elif len(DATA[i]) >= 1:
+    else:
         log("wrong measurement[" + str(i) + "] = " + str(RESULT[i][0] * MULTIPLIER) + " m", 2)
 
 

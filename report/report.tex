@@ -31,7 +31,40 @@
 	breakatwhitespace=true,
 	tabsize=4
 }
+
 \begin{document}
+
+{\Large\bf Autonomes Automobil}
+
+\bigskip
+
+
+{\bf  Abstract}
+
+\bigskip
+
+
+In diesem Bericht geht es um ... ("Ubersetzung erst, wenn der englische Text gut ist)
+
+\medskip
+
+{\it This report is about the creation of a self-driving model car using Python on a Raspberry Pi.}
+
+Full-size self-driving cars (also known as autonomous cars) are currently in focus of research.
+We are very interested in this topic and wanted to try this on our own.
+For practical reasons, we used a model car and not a full-size one.
+Our intention was to program the car, so it can go through an obstacle course without crashing.
+We did not try to make the car safe for road traffic.
+
+The development was both physically and computable.
+We had to modify the available car and solder a few cables, and we had to program in Python.
+
+In the end, we did not reach our initial goal.
+But the car can at least drive straight ahead and stop immediately in front of a wall.
+One could use the results of this project to make a car capable of driving an obstacle course.
+
+\newpage
+
 
 {\Large\bf Autonomes Automobil}
 
@@ -67,7 +100,7 @@ Friedrich-Wilhelm-Gymnasium K"oln, Severinstr. 241, 50676 K"oln
 
 \section{Einf"uhrung}\label{sec1}
 
-Ziel unseres Projekts war es, ein vorhandenes fernsteuerbares Modellauto (RTC) so umzubauen, dass es selbst"andig Hindernissen ausweichen kann.
+Ziel unseres Projekts war es, ein vorhandenes ferngesteuertes Modellautomobil (RC) so umzubauen, dass es selbst"andig Hindernissen ausweichen kann.
 Es sollte einen zuf"alligen Hindernisparcours durchfahren k"onnen, ohne irgendwo anzusto"sen.
 
 Wir sind auf dieses Projekt gekommen, weil wir uns sehr f"ur Technik interessieren.
@@ -181,8 +214,7 @@ Durch Funktionsaufrufe an diese Library k"onnen wir ablesen ob an den IN-Pins ei
 \lstinputlisting[language=Python, firstline=143, lastline=149]{../main.py}
 Beim Aufruf dieser Funktion f"angt das Auto anzufahren.
 Dies wird durch eine "Anderung der Spannungen an den Pins, die "uber das Relay am Antriebsmotor angeschlossen sind, erreicht.
-Diese "Anderung sorgt letztendlich daf"ur, dass ein geschlossener Stromkreis zwischen dem Akku des Autos und dem Antriebsmotor entsteht, und dass eine positive Spannung an
-diesem anliegt, was daf"ur sorgt, dass das Auto beginnt vorw"arts zu beschleunigen.
+Diese "Anderung sorgt letztendlich daf"ur, dass ein geschlossener Stromkreis zwischen dem Akku des Autos und dem Antriebsmotor entsteht, und dass eine positive Spannung an diesem anliegt, was daf"ur sorgt, dass das Auto beginnt vorw"arts zu beschleunigen.
 
 \medskip
 

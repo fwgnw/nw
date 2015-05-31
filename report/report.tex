@@ -180,6 +180,8 @@ Wir hatten uns also am Anfang, als wir uns ein Thema rausgesucht hatten, darum g
 Also hatten wir uns an einem Abend auf Skype zusammengesetzt und dar"uber diskutiert.
 Wir erkundigten uns auf Amazon "uber Produkte, welche wir eventuell kaufen w"urden.
 
+\subsubsection{Finden der ben"otigten Teile}\label{sec2.1.1}
+
 Wir "uberlegten uns, dass wir folgende Objekte brauchen w"urden, die essentiell waren, um passable Ergebnisse zeigen zu k"onnen:
 
 \begin{myitemize}
@@ -230,23 +232,26 @@ Aufbau/Beschreibung:
 	\end{myitemize}
 \end{myitemize}
 
+\subsubsection{Funktiontest der Komponenten}\label{sec2.1.2}
+
 Wir hatten dann eine Funktions"uberpr"ufung durchgef"uhrt und gecheckt, ob die Komponenten auch funktionst"uchtig und einsatzbereit waren.
 Dies haben wir getan indem wir in das Modellauto den geladenen Akku eingelegt hatten, die Fernbedienung startbereit gemacht hatten und das Auto angemacht hatten.
 Beim ersten Anlauf hat es auf Anhieb sofort geklappt und wir konnten erste Messungen durchf"uhren, welche f"ur das sp"atere Vorgehen essentiell waren.
-Wir haben das Auto auf die Stra"se gesetzt und haben es ca. 15- bis 20-mal fahren lassen und mithilfe von einer Stoppuhr und einer physikalischen Formel haben wir unterschiedliche Faktoren berechnet, dessen Ergebnisse wir selbstverst"andlich in unserem Laborbuch notiert haben:
+Wir haben das Auto auf die Stra"se gesetzt und haben es ca. 15- bis 20-mal fahren lassen.
+Mithilfe von einer Stoppuhr und einer physikalischen Formel haben wir unterschiedliche Faktoren berechnet, dessen Ergebnisse wir selbstverst"andlich in unserem Laborbuch notiert haben:
 
 \begin{myitemize}
 	\item Geschwindigkeit: v = s/t:
 	\begin{myitemize}
 		\item $ \approx $ 2,34~m/s, raue Stra"se
-		\item $ \approx $ 2,52~m/s, Fu"sweg, Steinplatten
+		\item $ \approx $ 2,52~m/s, Fu"sweg/Steinplatten
 	\end{myitemize}
 	\item $ \frac{\pi}{2} $-Kurve:
 	\begin{myitemize}
 		\item $ \approx $ 0,29~rad $ \pm $ 0,02~rad Radneigung
-		\item ca. 87 bis 90~cm (Stra"se), ca. 83 bis 85~cm (Fu"sweg) f"ur $ \frac{\pi}{2} $-Kurve
+		\item ca. 87 bis 90~cm (Stra"se), ca. 83 bis 85~cm (Fu"sweg) Hypotenuse f"ur $ \frac{\pi}{2} $-Kurve
 	\end{myitemize}
-	\item Bremsweg: $ < $ 5cm
+	\item Bremsweg: $ < $ 5~cm
 \end{myitemize}
 
 Den Raspberry-Pi, den wir uns zugelegt hatten, hatten wir getestet, indem wir den vorher aufgeladenen Akku angeschlossen hatten, ein Betriebssystem mithilfe einer SD-Karte integriert hatten und mithilfe einiger simplen Befehle den Raspberry-Pi auf seine Funktion getestet hatten. 
@@ -256,14 +261,17 @@ Sprich der GND (Ground) Anschluss an den Ground Pin, den VCC (Stromversorgung) A
 Nun, da wir die Sensoren angeschlossen hatten, wurde sogleich die Reichweite und die Genauigkeit der einzelnen Sensoren getestet.
 Aber wie genau diese Tests mit den einzelnen Codes ausgef"uhrt wurden, l"asst sich aus dem Abschnitt Software sehr gut herleiten.
 
-Um all dies ordentlich ausf"uhren zu k"onnen, stand uns die gesamte Zeit ein Fernseher und eine Tastatur zur Verf"ugung, um die Eingaben f"ur das Programm zu t"atigen und sie auf einer grafischen Oberfl"ache darstellen zu k"onnen.
+Um all dies ordentlich ausf"uhren zu k"onnen, stand uns die gesamte Zeit ein Fernseher-Bildschirm und eine Tastatur zur Verf"ugung, um die Eingaben f"ur das Programm zu t"atigen und sie auf einer grafischen Oberfl"ache darstellen zu k"onnen.
 
 Schnell stellten wir jedoch fest, als wir alle Ultraschallsensoren montieren wollten, dass der Rapberry-Pi nur zwei Stromversorgungspins hat.
 Da wir aber vier Ultraschallsensoren hatten, ben"otigten wir entweder noch zwei Stromquellen oder eine andere L"osung.
 Diese L"osung war dann, dass wir das Breadboard benutzt hatten um aus zwei Stromquellen vier zu machen.
 Wir steckten die Jumper-Stecker in zwei verschiedenen Reihen in zwei Spalten und haben dann die vier Ultraschallsensoren jeweils in zwei aufgeteilt und auf die Stromanschl"usse verteilt.
-Da wir uns nun im klaren waren, dass alle Komponenten funktionierten, setzten wir uns daran, den Vorl"aufer des jetzigen Computerprogramms zu entwickeln.
+
+Da wir uns nun im Klaren waren, dass alle Komponenten funktionierten, setzten wir uns daran, den Vorl"aufer des jetzigen Computerprogramms zu entwickeln.
 Das Programm enthielt ausschlie"slich die Befehle f"ur die Ultraschallsensoren.
+
+\subsubsection{Gestaltung des Fahrzeuginneren}\label{sec2.1.3}
 
 Nachdem wir also die ersten Ans"atze des Programms geschrieben hatten, hatten wir uns Gedanken zur Unterbringung in dem, im Vergleich zur Technik, kleinen Modellauto gemacht.
 Da das Auto zu einem Gro"steil aus Plastik besteht, war es eine Leichtigkeit das Auto zu bearbeiten.
@@ -277,6 +285,8 @@ Das bedeutet, dass der obere Teil des Auto, sprich die Karosserie, nicht unbedin
 Deswegen konnten wir die Karosserie, in welcher auch Sitze und  Armaturenbrett eingebaut waren, einfach so bearbeiten, ohne Gefahr zu laufen wichtige Teile zu zerst"oren.
 Wir trieben dann mit einem Schraubenzieher vier Schrauben durch das Dach des Modellautos und befestigten daran dann den Raspberry-Pi.
 Im selben Arbeitsschritt integrierten wir dann auch noch das Breadboard und die Ultraschallsensoren, sowie die daf"ur wichtigen Jumper-Stecker.
+
+\subsubsection{Relais}\label{sec2.1.4}
 
 Nun war die Aufgabe, sich zu "uberlegen, wie wir die Signale der beiden Motoren, Steuerung und Antrieb, an den Raspberry-Pi weitergeben.
 Wir testeten sehr viel aus, mit Jumper-Steckern, die die Signale weitergeben, mit der Platine, die im Auto vorhanden war, die wir versuchten mit dem Raspberry-Pi zu verbinden, aber all diese Versuche schlugen fehl und wir brauchten eine neue Idee.
@@ -304,11 +314,16 @@ Nach mehrmaligem Versuchen gelang es uns endlich, sie korrekt zu integrieren.
 Die Relais wurden so angeschlossen, dass der VCC-Anschluss mit einem Jumper-Stecker zu den der Ultraschallsensoren hinzugef"ugt wurde, der GND-Anschluss mit einem Ground-Pin verbunden wurde und die Anschl"usse der einzelnen Relais-Schalter an jeweils einen GPIO-Pin.
 Wir verbanden dann die beiden Motoren mit den Relais "uber das Breadboard und testeten dann, ob die Konstruktion funktionierte.
 
-Da diese Tests einwandfrei funktionierten wurde auch Platz f"ur die Relais-Platine gemacht und sie wurde mit Schrauben an dem Chassis montiert. Als das geschafft war, wurde das Programm bearbeitet, sodass auch die Relais eingeschlossen waren.
+Da diese Tests einwandfrei funktionierten, wurde auch Platz f"ur die Relais-Platine gemacht und sie wurde mit Schrauben an dem Chassis montiert.
+Als das geschafft war, wurde das Programm bearbeitet, sodass auch die Relais eingeschlossen waren.
+
+\subsubsection{Erste Fahrversuche}\label{sec2.1.5}
 
 Nun wurden die ersten richtigen Tests mit dem Auto durchgef"uhrt und getestet, ob die Motoren angesprochen werden konnten. Dann wurden auch die Ultraschallsensoren hinzugef"ugt.
 
 Dann stieg die Spannung, weil wir die erste Fahrt mit dem Auto machten und das Auto auf eine Wand zufuhr und vor jener stehen bleiben sollte. Das Auto blieb im gew"unschten Abstand vor der Wand stehen und damit hatten wir unseren ersten Erfolg erzielt.
+
+\subsubsection{Kurven}\label{sec2.1.6}
 
 \subsection{Software}\label{sec2.2}
 

@@ -421,14 +421,14 @@ Au"serdem schreibt die Funktion f"ur jede fehlgeschlagene Messung (Wert -1) und 
 
 \subsubsection{turn(a)}\label{sec2.2.6}
 \lstinputlisting[language=Python, firstline=195, lastline=206]{../main.py}
-Mit Hilfe dieser Funktion wollten wir es m"oglich machen Kurven mit einem festen Winkel zu fahren, dabei w"urde dann der Parameter a den Winkel in Grad angeben.
-Allerdings hat dies nicht ganz funktioniert, auch wenn wir ohne Probleme mit Hilfe von steerLeft() und steerRight() einlenken konnten, hat es doch nicht funktioniert Kurven des angegebenen Winkels zu fahren.
+Mit Hilfe dieser Funktion wollten wir es m"oglich machen, Kurven mit einem festen Winkel zu fahren, dabei w"urde dann der Parameter a den Winkel in Grad angeben.
+Allerdings hat dies nicht ganz funktioniert; auch wenn wir ohne Probleme mit Hilfe von steerLeft() und steerRight() einlenken konnten, hat es doch nicht funktioniert, Kurven des angegebenen Winkels zu fahren.
 Stattdessen ist das Auto die Kurven zu weit oder nicht weit genug gefahren.
-Weshalb diese Funktion in unserem Hauptprogramm drive1() auch nicht verwendet wird, sondern nur in unserer Testmethode drive2().
+Deshalb wird diese Funktion in unserem Hauptprogramm drive1() auch nicht verwendet, sondern nur in unserer Testmethode drive2().
 Da wir beim Motor, der f"ur die Lenkung zust"andig ist, lediglich nach links oder rechts lenken k"onnen (immer der gleiche Einschlagwinkel), konnten wir die Weite der Kurve nur durch die Dauer des Einlenkens beeinflussen.
-Dabei ist es vermutlich zu Probleme gekommen, weil wir f"ur die Berechnung dieser Dauer die Geschwindigkeit verwendet haben, die das Auto hatte als es anf"angt die Kurve zu fahren.
-Wenn sich dann allerdings die Geschwindigkeit w"ahrend dem Fahren der Kurve "ander, dann beeinflusst dies die Weite der Kurve.
-Stattdessen h"atten wir f"ur eine genauere Methode, entweder durchgehend die Geschwindigkeit des Autos bestimmen m"ussen, oder wir h"atten eine andere Methode finden m"ussen, um zu bestimmen wann das Auto die Kurve zu Ende gefahren hat.
+Dabei ist es vermutlich zu Probleme gekommen, weil wir f"ur die Berechnung dieser Dauer die Geschwindigkeit verwendet haben, die das Auto hatte, als es anf"angt die Kurve zu fahren.
+Wenn sich dann allerdings die Geschwindigkeit w"ahrend dem Fahren der Kurve "andert, beeinflusst dies die Weite der Kurve.
+Stattdessen h"atten wir f"ur eine genauere Methode entweder durchgehend die Geschwindigkeit des Autos bestimmen m"ussen, oder wir h"atten eine andere Methode finden m"ussen, um zu bestimmen, wann das Auto die Kurve zu Ende gefahren hat.
 
 \subsubsection{countdown(t)}\label{sec2.2.7}
 \lstinputlisting[language=Python, firstline=209, lastline=214]{../main.py}

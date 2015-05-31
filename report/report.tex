@@ -2,6 +2,35 @@
 \usepackage[ngerman]{babel}
 \usepackage{graphicx}
 %\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{gbred}{RGB}{251,73,52}
+\definecolor{gbyellow}{RGB}{250,189,47}
+\definecolor{gborange}{RGB}{254,128,25}
+\definecolor{gbpurple}{RGB}{211,134,155}
+\definecolor{gbgreen}{RGB}{184,187,38}
+\definecolor{gbgray}{RGB}{146,131,116}
+
+\lstset{
+	frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left,
+	numberstyle=\tiny\color{gbgray},
+	keywordstyle=\color{gbred},
+	commentstyle=\color{gbgray},
+	stringstyle=\color{gbyellow},
+	emph={len, str, float, print},
+	emphstyle=\color{gborange},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4
+}
 \begin{document}
 
 {\Large\bf Autonomes Automobil}
@@ -139,9 +168,9 @@ Diese Funktionen werde ich im Folgenden einzeln erl"autern.
 \medskip
 
 \textbf{setup()}
-\newline
+\lstinputlisting[language=Python, firstline=30, lastline=46]{../main.py}
 Diese Funktion wird als erstes ausgef"uhrt wenn das Hauptprogramm gestartet wird.
-Sie ist daf"ur zust"andig alle Pin wieder auf ihren Ausgangszustand zur"uckzusetzen, d.h. die Pins auf OUT bzw. IN zu stellen und die angelegte Spannung der OUT-Pins auf 0V zu setzen.
+Sie ist daf"ur zust"andig alle Pins wieder auf ihren Ausgangszustand zur"uckzusetzen, d.h. die Pins auf OUT bzw. IN zu stellen und die angelegte Spannung der OUT-Pins auf 0V zu setzen.
 Au"serdem werden die Einstellungen der GPIO Library gesetzt.
 Die GPIO Library haben wir als Schnittstelle zwischen unserem Programm und den Pins des Raspberry Pi gew"ahlt.
 Durch Funktionsaufrufe an diese Library k"onnen wir ablesen ob an den IN-Pins eine Spannung von 3,5 V anliegt und wir k"onnen an den OUT-Pins selbst eine Spannung von 3,5 V anlegen.
@@ -149,7 +178,7 @@ Durch Funktionsaufrufe an diese Library k"onnen wir ablesen ob an den IN-Pins ei
 \medskip
 
 \textbf{driveForward()}
-\newline
+\lstinputlisting[language=Python, firstline=143, lastline=149]{../main.py}
 Beim Aufruf dieser Funktion f"angt das Auto anzufahren.
 Dies wird durch eine "Anderung der Spannungen an den Pins, die "uber das Relay am Antriebsmotor angeschlossen sind, erreicht.
 Diese "Anderung sorgt letztendlich daf"ur, dass ein geschlossener Stromkreis zwischen dem Akku des Autos und dem Antriebsmotor entsteht, und dass eine positive Spannung an
@@ -158,7 +187,7 @@ diesem anliegt, was daf"ur sorgt, dass das Auto beginnt vorw"arts zu beschleunig
 \medskip
 
 \textbf{measure(i)}
-\newline
+\lstinputlisting[language=Python, firstline=54, lastline=81]{../main.py}
 Der Parameter i in dieser Funktion beschreibt den Sensor, mit dem gemssen werden soll.
 Dabei handelt es sich bei i um eine Zahl von 0 bis 3.
 Zuerst f"uhrt diese Funktion eine Messung mit dem angegebenen Sensor durch.
@@ -176,7 +205,7 @@ Falls dies passiert, wird als gemessener Zeitwert -1 abgespeichert, dies behande
 \medskip
 
 \textbf{check\_results(i)}
-\newline
+\lstinputlisting[language=Python, firstline=108, lastline=136]{../main.py}
 Bereits bei den ersten Tests ist uns aufgefallen, dass relativ h"aufig fehlerhafte Werte auftreten.
 Deshalb war uns schon ziemlich fr"uh klar, dass wir eine Funktion brauchen, die die Messwerte auf ihre Richtigkeit "uberpr"uft.
 

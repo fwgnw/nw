@@ -224,16 +224,24 @@ Beim Aufruf dieser Funktion f"angt das Auto an zu fahren.
 Dies wird durch eine "Anderung der Spannungen an den Pins, die "uber das Relais am Antriebsmotor angeschlossen sind, erreicht.
 Diese "Anderung sorgt letztendlich daf"ur, dass ein geschlossener Stromkreis zwischen dem Akku des Autos und dem Antriebsmotor entsteht, und, dass eine positive Spannung an diesem anliegt.
 Das daf"ur sorgt, dass das Auto beginnt vorw"arts zu beschleunigen.
+Dementsprechend gibt es auch noch die Funktionen driveBackward(), stopdrive(), steerLeft(), steerRight() und stopsteer(), die im Grunde alle auf die gleiche Art und Weise funktionieren.
+Diese Funktionen sind, entsprechend ihrer englischen Namen, f"ur das R"uckw"artsfahren, Stoppen und Lenken verantwortlich.
 
-\medskip
+\subsubsection{brake()}\label{sec2.2.3}
+\lstinputlisting[language=Python, firstline=180, lastline=192]{../main.py}
+F"ur das Bremsen allerdings hat uns ein einfaches Aufrufen von stopdrive() nicht gereicht.
+Dabei wird der Antriebsmotor lediglich ausgeschaltet, was einen relativ langsamen Bremsvorgang zur Folge hat.
+Eine bessere Methode ist diese Funktion.
+Im Gegensatz zu einem einfachen Ausschalten des Motors wirkt diese Funktion der aktuellen Bewegungsrichtung f"ur einen kurzen Moment, mithilfe des Antriebsmotors, entgegen.
+Dies sorgt f"ur einen deutlich schnelleren Bremsvorgang.
 
-\subsubsection{measure(i)}\label{sec2.2.3}
+\subsubsection{measure(i)}\label{sec2.2.4}
 \lstinputlisting[language=Python, firstline=54, lastline=81]{../main.py}
 Der Parameter i in dieser Funktion beschreibt den Sensor, mit dem gemessen werden soll.
 Dabei handelt es sich bei i um eine Zahl von 0 bis 3.
 Zuerst f"uhrt diese Funktion eine Messung mit dem angegebenen Sensor durch.
 Danach wird der erhaltene Messwert in der Liste RESULT abgespeichert.
-Um eine Messung mit dem Ultraschallsensor zu starten, muss man diesem zuerst "uber den daran angeschlossenen OUT-Pin einen elektrischen Impuls der Dauer 10 µs und Spannung 3,5~V geben.
+Um eine Messung mit dem Ultraschallsensor zu starten, muss man diesem zuerst "uber den daran angeschlossenen OUT-Pin einen elektrischen Impuls der Dauer 10~µs und Spannung 3,5~V geben.
 Dann wartet unser Programm auf eine R"uckmeldung von dem Sensor, dies Erfolgt durch einen "ahnlichen elektrischen Impuls, den wir "uber den IN-Pin, der mit dem Sensor verbunden ist, empfangen k"onnen.
 Den Zeitpunkt, zu dem wir diesen Impuls empfangen haben, speichern wir zwischen, da dieser genau dem Zeitpunkt entspricht, zu dem das Ultraschallsignal gesendet wurde.
 Entsprechend dem ersten kommt dann, bei Empfangen des Ultraschallsignals, ein weiterer Impuls, den wir erneut empfangen und dessen Zeitpunkt abspeichern, sodass wir schlie"slich durch die Differenz der beiden Zeitpunkte die Zeit herausfinden, die das Ultraschallsignal f"ur Hin- und R"uckweg gebraucht hat.
@@ -241,12 +249,35 @@ Hierbei haben wir au"serdem einen Schutz eingebaut, der das Programm davor sch"u
 Und zwar wird das Warten auf den zweiten Impuls nach 25~ms abgebrochen.
 Falls dies passiert, wird als gemessener Zeitwert -1 abgespeichert, dies behandeln wir im Programm allgemein als fehlgeschlagene Messungen.
 
-\medskip
-
-\subsubsection{check\_results(i)}\label{sec2.2.4}
+\subsubsection{check\_results(i)}\label{sec2.2.5}
 \lstinputlisting[language=Python, firstline=108, lastline=136]{../main.py}
 Bereits bei den ersten Tests ist uns aufgefallen, dass relativ h"aufig fehlerhafte Werte auftreten.
 Deshalb war uns schon ziemlich fr"uh klar, dass wir eine Funktion brauchen, die die Messwerte auf ihre Richtigkeit "uberpr"uft.
+W"urden diese Werte etwa in der Abstands"uberpr"ufung verwendet, so k"onnte dies dazu f"uhren, dass das Auto zu fr"uh bremst.
+Zuerst "uberpr"uft die Funktion, ob die Differenz zwischen dem zuletzt gemessenen Wert und dem zuletzt als g"ultigen Wert Abgespeichertem nicht unsere Maximalabweichung "uberschreitet.
+Diese Maximalabweichung haben wir als Konstante mit dem Wert 0,2~m definiert.
+Ist diese Abweichung geringer als das von uns festgelegte Maximum, so wird der zuletzt gemessene Wert ohne weitere "Uberpr"ufungen als g"ultiger Wert angesehen und abgespeichert.
+Andernfalls gibt es zwei verschiedene M"oglichkeiten.
+Entweder ist war der vorige Wert g"ultig, dann wird der zuletzt gemessene Wert ohne weiteres in der Liste WDATA abgelegt.
+Oder aber einer oder mehrere vorangegangene Werte waren bereits ebenfalls ung"ultig, dann wird der zuletzt gemessen Wert erst noch mit diesen Werten verglichen.
+Wenn dann die drei letzten Werte nah beieinander lagen, d.~h. die Differenz nicht die Maximalabweichung "uberschreitet, dann wird der zuletzt gemessene Werte als g"ultiger Messwert angesehen, und dementsprechend in der Liste DATA abgespeichert.
+Anschlie"send wird aus den letzten zwei g"ultigen Messungen die momentane Geschwindigkeit berechnet.
+Au"serdem schreibt die Funktion f"ur jede fehlgeschlagene Messung (Wert -1) und jeden abweichenden Messwert einen Kommentar in die Logfile.
+
+\subsubsection{turn(a)}\label{sec2.2.6}
+\lstinputlisting[language=Python, firstline=195, lastline=206]{../main.py}
+Mit Hilfe dieser Funktion wollten wir es m"oglich machen Kurven mit einem festen Winkel zu fahren.
+Dabei w"are dann der Parameter a der Winkel in Grad.
+Allerdings hat dies nicht ganz funktioniert, auch wenn wir ohne Probleme mit Hilfe von steerLeft() und steerRight() einlenken konnten, hat es doch nicht funktioniert Kurven des angegebenen Winkels zu fahren.
+Stattdessen ist das Auto die Kurven zu weit oder nicht weit genug gefahren.
+Weshalb diese Funktion in unserem Hauptprogramm drive1() auch nicht verwendet wird, sondern nur in unserer Testmethode drive2().
+
+\subsubsection{countdown(t)}\label{sec2.2.7}
+\lstinputlisting[language=Python, firstline=209, lastline=214]{../main.py}
+Diese Funktion existiert lediglich aus praktischen Gr"unden.
+Und zwar ist es uns momentan nur m"oglich das Programm "uber eine angeschlossene Tastatur zu starten.
+Da das Auto sofort nach starten des Programms zu fahren beginnt, und das Kabel der angeschlossenen Tastatur f"ur die Fahrtests eine deutliche Einschr"ankung darstellt, ist diese Funktion daf"ur zust"andig eine, durch t bestimmte, Zeit in Sekunden zu warten.
+Diese Funktion starten wir also, vor dem Start von drive1(), um ein wenig Zeit zu haben bevor das Auto losf"ahrt.
 
 \section{Fazit und Ausblick}\label{sec3}
 

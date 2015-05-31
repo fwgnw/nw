@@ -133,8 +133,8 @@ Diese "Uberlegung ist in Abb.~\ref{Fig1} dargestellt (S = Sensor, M = Motor).
 	\label{Fig1}
 \end{figure}
 
-Um sicherzugehen, welche Bauteile man braucht, und, wie sie alle zusammen funktionieren, haben wir im Internet unter [Quelle] nachgeschaut.
-Wie wir uns dann entschieden haben, ist unter [Abschnitt Hardware] genauer dargestellt.
+Um sicherzugehen, welche Bauteile man braucht, und, wie sie alle zusammen funktionieren, haben wir uns zuerst im Internet informiert.
+Wie wir uns dann entschieden haben, ist unter {\bf 2.2.1 Finden der ben"otigten Teile} genauer dargestellt.
 
 Wir haben die meiste Zeit zu dritt zusammen gearbeitet, f"ur die Dokumentation hat jeder einen Teilaspekt bearbeitet.
 Die Aufteilung der Arbeit ist in Tabelle~\ref{Tab1} dargestellt.
@@ -191,10 +191,12 @@ Wir "uberlegten uns, dass wir folgende Objekte brauchen w"urden, die essentiell 
 	\item Computer, z.~B. Raspberry-Pi oder Arduino
 	\item Akku f"ur Computer
 	\item Kabel f"ur die Verbindungen
+	\item Widerst"ande
 	\item Ultraschallsensoren f"ur Umgebungserfassung
 \end{smallitemize}
 
 Wir haben uns dann f"ur ein Mini Cooper Modellauto in einen 1:30 Ma"sstab entschieden, f"ur einen Raspberry-Pi, f"ur einen 5600 mAh Akku, Jumper-Stecker f"ur die Verbindungen und HC-SR04 Umgebungserfassungs-Module mit Ultraschall, welche extra f"ur den Raspberry-Pi abgestimmt waren.
+Au"serdem haben wir uns f"ur Widerst"ande entschieden, da wir auf der Website ModMyPi \cite{ModMyPi} ein Beispiel fanden f"ur eine Verwendung von Ultraschallsensoren und sie dort Widerst"ande benutzten.
 Nach dieser Voreinsch"atzung, was wir f"ur Produkte brauchen, haben wir diese kurz danach bestellt.
 
 Ungef"ahr einen Monat nachdem wir diese Komponenten bestellt hatten, kamen sie dann auch bei uns an. 
@@ -220,6 +222,12 @@ Ungef"ahr einen Monat nachdem wir diese Komponenten bestellt hatten, kamen sie d
 		\item Board f"ur Jumper-Stecker
 	\end{smallitemize}
 	\item Jumper Stecker
+	\item Widerst"ande:
+	\begin{smallitemize}
+		\item 5-mal: 10~$ \Omega $, 1~k$ \Omega $, 10~k$ \Omega $, 100~k$ \Omega $
+		\item 4-mal: 47~$ \Omega $, 100~$ \Omega $, 470~$ \Omega $, 2,2~k$ \Omega $, 4,7~k$ \Omega $, 1~M$ \Omega $
+		\item 2-mal: 150~$ \Omega $, 220~$ \Omega $, 15~k$ \Omega $
+	\end{smallitemize}
 	\item Ultraschallsensoren:
 	\begin{smallitemize}
 		\item 4 Pins (GND, ECHO, VCC, TRIG)
@@ -477,7 +485,7 @@ Danach k"onnte man nocheinmal versuchen, das Auto Kurven fahren zu lassen.
 \addcontentsline{toc}{section}{Literatur}
 \begin{thebibliography}{99}
 	\itemsep-2pt \small
-	\bibitem{ModMyPi} http://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi %\cite{ModMyPi}
+	\bibitem{ModMyPi} http://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi
 \end{thebibliography}
 
 \newpage
@@ -496,7 +504,7 @@ Wir danken Erich Redweik und Fritz Tillmann f"ur ihre freundliche Unterst"utzung
 
 \medskip
 
-Hiermit best"atige ich, dass ich die vorliegende Arbeit selbst"andig verfasst und keine anderen als die angegebenen Hilfsmittel benutzt habe.
+Hiermit best"atigen wir, dass wir die vorliegende Arbeit selbst"andig verfasst und keine anderen als die angegebenen Hilfsmittel benutzt haben.
 Die Stellen der Arbeit, die dem Wortlaut oder dem Sinn nach anderen Werken (dazu z"ahlen auch Internetquellen) entnommen sind, wurden unter Angabe der Quelle kenntlich gemacht.
 
 \end{document}

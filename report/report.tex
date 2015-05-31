@@ -32,7 +32,15 @@
 	tabsize=4
 }
 
-%\usepackage[nottoc]{tocbibind}
+\newenvironment{myitemize}{
+	\begin{itemize}
+		\setlength{\itemsep}{0pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\parsep}{0pt}
+}
+{
+	\end{itemize}
+}
 
 \begin{document}
 
@@ -153,16 +161,6 @@ Im folgenden Hauptteil haben wir zuerst die Hardware, dann die Software behandel
 
 \section{Hauptteil}\label{sec2}
 
-Zuerst haben wir das Problem analysiert und das Arbeitsprogramm erstellt.
-
-\subsection{Hardware}\label{sec2.1}
-
-Der erste Arbeitsunterpunkt wurde so behandelt und folgender L"osung zugef"uhrt.
-
-\begin{equation}
-	E = mc^2 ,
-\end{equation}
-
 die der Kollege Albert vom Patentamt Bern \cite{ModMyPi} auch schon beschrieben hat.
 
 \begin{figure}[h]
@@ -172,113 +170,143 @@ die der Kollege Albert vom Patentamt Bern \cite{ModMyPi} auch schon beschrieben 
 	\label{Fig2}
 \end{figure}
 
+\subsection{Hardware}\label{sec2.1}
+
 In diesem Teil geht es um die Hardware des gesamten Projektes.
 Die Hardware ist neben der Software der wichtigste Bestandteil des ganzen Projektes.
-Ohne die Hardware w"are die Umsetzung nicht m"oglich gewesen, da wir kein Testobjekt h"atten um Fehler herauszufinden.
+Ohne die Hardware w"are die Umsetzung nicht m"oglich gewesen, da wir kein Testobjekt h"atten, um Fehler herauszufinden.
 
-Wir hatten uns also am Anfang, als wir uns ein Thema rausgesucht hatten, darum gek"ummert was wir f"ur die Umsetzung br"auchten.
+Wir hatten uns also am Anfang, als wir uns ein Thema rausgesucht hatten, darum gek"ummert, was wir f"ur die Umsetzung br"auchten.
 Also hatten wir uns an einem Abend auf Skype zusammengesetzt und dar"uber diskutiert.
-Wir erkundigten uns auf Amazon™ "uber Produkte, welche wir eventuell kaufen w"urden.
+Wir erkundigten uns auf Amazon "uber Produkte, welche wir eventuell kaufen w"urden.
 
-Wir "uberlegten uns, dass wir folgende Objekte brauchen w"urden, die essentiell waren um passable Ergebnisse zeigen zu k"onnen:
-Modellauto mit Motor
-Computer z.B. Raspberry-Pi oder Arduino
-Akku f"ur Computer
-Kabel f"ur die Verbindungen
-Ultraschallsensoren f"ur Umgebungserfassung
-Wir haben uns dann f"ur ein Mini Cooper Modellauto in 1:30 Format entschieden, f"ur einen Raspberry-Pi, f"ur einen 5600 m/A/h Akku, Jumper-Stecker f"ur die Verbindungen und HC-SR04 Umgebungserfassungs-Module mit Ultraschall, welche extra f"ur den Raspberry-Pi abgestimmt waren.
-Nach dieser Voreinsch"atzung was wir f"ur Produkte brauchen, haben wir diese kurz danach bestellt.
+Wir "uberlegten uns, dass wir folgende Objekte brauchen w"urden, die essentiell waren, um passable Ergebnisse zeigen zu k"onnen:
 
-Ungef"ahr einen Monat nachdem wir diese Komponenten bestellt hatten kamen sie dann auch bei uns an. 
+\begin{myitemize}
+	\item Modellauto mit Motor
+	\item Computer, z.~B. Raspberry-Pi oder Arduino
+	\item Akku f"ur Computer
+	\item Kabel f"ur die Verbindungen
+	\item Ultraschallsensoren f"ur Umgebungserfassung
+\end{myitemize}
+
+Wir haben uns dann f"ur ein Mini Cooper Modellauto in einen 1:30 Ma"sstab entschieden, f"ur einen Raspberry-Pi, f"ur einen 5600 mA/h Akku, Jumper-Stecker f"ur die Verbindungen und HC-SR04 Umgebungserfassungs-Module mit Ultraschall, welche extra f"ur den Raspberry-Pi abgestimmt waren.
+Nach dieser Voreinsch"atzung, was wir f"ur Produkte brauchen, haben wir diese kurz danach bestellt.
+
+Ungef"ahr einen Monat nachdem wir diese Komponenten bestellt hatten, kamen sie dann auch bei uns an. 
 
 Aufbau/Beschreibung:
-\begin{itemize}
-	\item The first item
-	\item The second item
-	\item The third item
-\end{itemize}
-Raspberry-Pi:  - 4 USB Ports
-- 1 HDMI Port
-- 1 Lan Port
-- 1 Sound Port
-- 1 Mikro USB Port  f"ur Akku
-- 40 GPIO Pins zur Daten"ubertragung
-Akku:  - Akkumulator
-- USB – Mikro USB Kabel
-Breadboard:  - Board f"ur Jumper-Stecker
-Jumper Stecker
-Ultraschallsensoren: - 4 Pins (GND, ECHO, VCC, TRIG)
-    - 1 Empf"anger
-    - 1 Sender
-Modellauto:  -  Chassis mit Motoren f"ur Steuern und Beschleunigen
-   - Karosserie aus Plastik nur Verzierung und Antenne
-   - Fernbedienung mit 4 Kn"opfen
+\begin{myitemize}
+	\item Raspberry Pi:
+	\begin{myitemize}
+		\item 4 USB Ports
+		\item 1 HDMI Port
+		\item 1 Lan Port
+		\item 1 Sound Port
+		\item 1 Mikro USB Port  f"ur Akku
+		\item 40 GPIO Pins zur Daten"ubertragung
+	\end{myitemize}
+	\item Akku:
+	\begin{myitemize}
+		\item Akkumulator
+		\item USB- auf Mikro-USB-Kabel
+	\end{myitemize}
+	\item Breadboard:
+	\begin{myitemize}
+		\item Board f"ur Jumper-Stecker
+	\end{myitemize}
+	\item Jumper Stecker
+	\item Ultraschallsensoren:
+	\begin{myitemize}
+		\item 4 Pins (GND, ECHO, VCC, TRIG)
+		\item 1 Empf"anger
+		\item 1 Sender
+	\end{myitemize}
+	\item Modellauto:
+	\begin{myitemize}
+		\item Chassis mit Motoren f"ur Steuern und Beschleunigen
+		\item Karosserie aus Plastik nur Verzierung und Antenne
+		\item Fernbedienung mit 4 Kn"opfen
+	\end{myitemize}
+\end{myitemize}
 
-Wir hatten dann eine Funktions"uberpr"ufung durchgef"uhrt und gecheckt ob die Komponenten auch funktionst"uchtig und einsatzbereit waren.
+Wir hatten dann eine Funktions"uberpr"ufung durchgef"uhrt und gecheckt, ob die Komponenten auch funktionst"uchtig und einsatzbereit waren.
 Dies haben wir getan indem wir in das Modellauto den geladenen Akku eingelegt hatten, die Fernbedienung startbereit gemacht hatten und das Auto angemacht hatten.
 Beim ersten Anlauf hat es auf Anhieb sofort geklappt und wir konnten erste Messungen durchf"uhren, welche f"ur das sp"atere Vorgehen essentiell waren.
-Wir haben das Auto auf die Stra"se gesetzt und haben es einige 10 male fahren gelassen und mithilfe von einer Stoppuhr und einer physikalischen Formel haben wir unterschiedliche Faktoren berechnet, dessen Ergebnisse wir selbstverst"andlich in unserem Laborbuch notiert haben:
-Geschwindigkeit: V = S/T: - ~ 2.34 m/s, raue Stra"se
-  - ~ 2.52 m/s, Fu"sweg, Steinplatten,
-90° Kurve: - ~ 16,5° ± 1° Radneigung
- - ~ 87 – 90 cm (Stra"se), ~ 83 – 85 cm (Fu"sweg) f"ur 90°-Kurve
-Bremsweg: < 5cm
+Wir haben das Auto auf die Stra"se gesetzt und haben es ca. 15- bis 20-mal fahren lassen und mithilfe von einer Stoppuhr und einer physikalischen Formel haben wir unterschiedliche Faktoren berechnet, dessen Ergebnisse wir selbstverst"andlich in unserem Laborbuch notiert haben:
+
+\begin{myitemize}
+	\item Geschwindigkeit: v = s/t:
+	\begin{myitemize}
+		\item $ \approx $ 2,34~m/s, raue Stra"se
+		\item $ \approx $ 2,52~m/s, Fu"sweg, Steinplatten
+	\end{myitemize}
+	\item $ \frac{\pi}{2} $-Kurve:
+	\begin{myitemize}
+		\item $ \approx $ 0,29~rad $ \pm $ 0,02~rad Radneigung
+		\item ca. 87 bis 90~cm (Stra"se), ca. 83 bis 85~cm (Fu"sweg) f"ur $ \frac{\pi}{2} $-Kurve
+	\end{myitemize}
+	\item Bremsweg: $ < $ 5cm
+\end{myitemize}
 
 Den Raspberry-Pi, den wir uns zugelegt hatten, hatten wir getestet, indem wir den vorher aufgeladenen Akku angeschlossen hatten, ein Betriebssystem mithilfe einer SD-Karte integriert hatten und mithilfe einiger simplen Befehle den Raspberry-Pi auf seine Funktion getestet hatten. 
 Nachdem wir dann die Best"atigung hatten, dass der Raspberry-Pi funktionierte, war als n"achstes jeder der Ultraschallsensoren dran.
 Dazu hatten wir sie einzeln an den Raspberry-Pi angeschlossen, indem wir jeden der Pins der Ultraschallsensoren zu einem dazu passenden Pin am Raspberry-Pi verbunden hatten.
 Sprich der GND (Ground) Anschluss an den Ground Pin, den VCC (Stromversorgung) Anschluss an den Strom Pin und die ECHO und TRIG Anschl"usse wurden an jeweils an einen freien GPIO Pin angeschlossen.
-Nun da wir die Sensoren angeschlossen hatten, wurde sogleich die Reichweite und die Genauigkeit der einzelnen Sensoren getestet.
-Aber wie genau diese Tests mit den einzelnen Codes ausgef"uhrt wurden l"asst sich aus Teil „Software“ sehr gut herleiten.
+Nun, da wir die Sensoren angeschlossen hatten, wurde sogleich die Reichweite und die Genauigkeit der einzelnen Sensoren getestet.
+Aber wie genau diese Tests mit den einzelnen Codes ausgef"uhrt wurden, l"asst sich aus dem Abschnitt Software sehr gut herleiten.
 
-Um all dies ordentlich ausf"uhren zu k"onnen, stand uns die gesamte Zeit ein Fernseher und eine Tastatur zur Verf"ugung um die Eingaben f"ur das Programm zu t"atigen und sie auf einer grafischen Oberfl"ache darstellen zu k"onnen.
+Um all dies ordentlich ausf"uhren zu k"onnen, stand uns die gesamte Zeit ein Fernseher und eine Tastatur zur Verf"ugung, um die Eingaben f"ur das Programm zu t"atigen und sie auf einer grafischen Oberfl"ache darstellen zu k"onnen.
 
-Schnell stellten wir jedoch fest, als wir alle Ultraschallsensoren montieren wollten, dass der Rapberry-Pi nur zwei Stromversorgungspins hat, da wir aber vier Ultraschallsensoren hatten ben"otigten wir entweder noch zwei Stromquellen oder eine andere L"osung.
+Schnell stellten wir jedoch fest, als wir alle Ultraschallsensoren montieren wollten, dass der Rapberry-Pi nur zwei Stromversorgungspins hat.
+Da wir aber vier Ultraschallsensoren hatten, ben"otigten wir entweder noch zwei Stromquellen oder eine andere L"osung.
 Diese L"osung war dann, dass wir das Breadboard benutzt hatten um aus zwei Stromquellen vier zu machen.
 Wir steckten die Jumper-Stecker in zwei verschiedenen Reihen in zwei Spalten und haben dann die vier Ultraschallsensoren jeweils in zwei aufgeteilt und auf die Stromanschl"usse verteilt.
-Da wir uns nun im klaren waren, dass alle Komponenten funktionierten setzten wir uns daran den Vorl"aufer des jetzigen Computerprogramms zu entwickeln.
+Da wir uns nun im klaren waren, dass alle Komponenten funktionierten, setzten wir uns daran, den Vorl"aufer des jetzigen Computerprogramms zu entwickeln.
 Das Programm enthielt ausschlie"slich die Befehle f"ur die Ultraschallsensoren.
 
 Nachdem wir also die ersten Ans"atze des Programms geschrieben hatten, hatten wir uns Gedanken zur Unterbringung in dem, im Vergleich zur Technik, kleinen Modellauto gemacht.
-Da das Auto zu 85 \% aus Plastik  besteht war es eine Leichtigkeit das Auto zu bearbeiten.
-Wir gingen also in die Werkstatt, die Timos Opa (Erich Redweik) zur Verf"ugung stellte, in welcher wir die Werkzeuge vorfinden konnten, um solche Bearbeitungen durchzuf"uhren.
-In der Werkstatt fanden wir eine Werkbank vor, sowie verschiedene Werkzeuge, unter anderem S"agen, Pfeilen, Schmirgelpapiere, H"ammer, Bohrer, Fr"asen, L"ot-Ger"ate und weitere Werkzeuge. Selbstverst"andlich waren dort auch Schutzbrillen vorzufinden. 
+Da das Auto zu einem Gro"steil aus Plastik besteht, war es eine Leichtigkeit das Auto zu bearbeiten.
+Wir gingen also in die Werkstatt, die Erich Redweik (Timos Gro"svater) zur Verf"ugung stellte, in welcher wir die Werkzeuge vorfinden konnten, um solche Bearbeitungen durchzuf"uhren.
+In der Werkstatt fanden wir eine Werkbank vor, sowie verschiedene Werkzeuge, unter anderem S"agen, Pfeilen, Schmirgelpapiere, H"ammer, Bohrer, Fr"asen, L"ot-Ger"ate und weitere Werkzeuge. Selbstverst"andlich waren dort auch Schutzbrillen vorzufinden.
 
-Wir bearbeiteten das Auto nun so, dass alle unn"otigen Verzierungen im Auto wie Armaturenbrett und Sitze herauszunehmen waren. Diese Teile schmissen wir dann weg, da wir die nicht mehr brauchten.
+Wir bearbeiteten das Auto nun so, dass alle unn"otigen Verzierungen im Auto wie Armaturenbrett und Sitze herauszunehmen waren.
+Diese Teile schmissen wir dann weg, da wir sie nicht mehr brauchten.
 Wir hatten Gl"uck mit dem Auto, da das Auto auf der nicht selbsttragenden Bauweise des Chassis basierte.
 Das bedeutet, dass der obere Teil des Auto, sprich die Karosserie, nicht unbedingt n"otig war.
-Deswegen konnten wir die Karosserie, in welcher auch Sitze und  Armaturenbrett eingebaut waren, einfach so bearbeiten ohne Gefahr zu laufen wichtige Teile zu zerst"oren.
+Deswegen konnten wir die Karosserie, in welcher auch Sitze und  Armaturenbrett eingebaut waren, einfach so bearbeiten, ohne Gefahr zu laufen wichtige Teile zu zerst"oren.
 Wir trieben dann mit einem Schraubenzieher vier Schrauben durch das Dach des Modellautos und befestigten daran dann den Raspberry-Pi.
 Im selben Arbeitsschritt integrierten wir dann auch noch das Breadboard und die Ultraschallsensoren, sowie die daf"ur wichtigen Jumper-Stecker.
 
-Nun war die Aufgabe sich zu "uberlegen wie wir die Signale der beiden Motoren, Steuerung und Antrieb, an den Raspberry-Pi weitergeben.
-Wir testeten sehr viel aus, mit Jumper-Steckern die die Signale weitergeben, mit der Platine die im Auto vorhanden war die wir versuchten mit dem Raspberry-Pi zu verbinden, aber all diese Versuche schlugen fehl und wir brauchten eine neue Idee.
-Nach mehreren Stunden durchgehender "Uberlegungen wie wir es anstellen k"onnten und Recherchen im Internet wurden wir immer noch nicht schlauer.
-Irgendwann kam Timo auf die Idee seinen Gro"svater Erich Redweik zu fragen, da jener als Industrie-Elektronik-Techniker gearbeitet hatte und wir uns erhofften, dass er uns helfen k"onnte.
-Diese Idee wurde auch von Nicolas und Quentin positiv unterst"utzt und sofort wurde Herr Redweik angerufen und zu rate gezogen.
-Wir erkl"arten ihm das Problem welches wir hatten:
+Nun war die Aufgabe, sich zu "uberlegen, wie wir die Signale der beiden Motoren, Steuerung und Antrieb, an den Raspberry-Pi weitergeben.
+Wir testeten sehr viel aus, mit Jumper-Steckern, die die Signale weitergeben, mit der Platine, die im Auto vorhanden war, die wir versuchten mit dem Raspberry-Pi zu verbinden, aber all diese Versuche schlugen fehl und wir brauchten eine neue Idee.
+Nach mehreren Stunden durchgehender "Uberlegungen, wie wir es anstellen k"onnten, und Recherchen im Internet, wurden wir immer noch nicht schlauer.
+Irgendwann kam Timo auf die Idee, seinen Gro"svater Erich Redweik zu fragen, da jener als Industrie-Elektronik-Techniker gearbeitet hatte und wir uns erhofften, dass er uns helfen k"onnte.
+Diese Idee wurde auch von Nicolas und Quentin positiv unterst"utzt und sofort wurde Herr Redweik angerufen und zu Rate gezogen.
+Wir erkl"arten ihm das Problem welches wir hatten.
 
-Das Problem war: jeder der Motoren funktioniert so, dass die Spannung, welche auf den Motor gegeben wird, positiv oder negativ ist und damit die Richtung des Motors eingestellt wird, sprich Rechts-Links Lenken oder Vorw"arts-R"uckw"arts Fahren. Das diese Motoren so funktionieren wurde uns erst von Herr Redweik erkl"art.
+Das Problem war: Jeder der Motoren funktioniert so, dass die Spannung, welche auf den Motor gegeben wird, positiv oder negativ ist und damit die Richtung des Motors eingestellt wird, sprich, dass rechts-links Lenken oder vorw"arts-r"uckw"arts Fahren m"oglich ist.
+Dass diese Motoren so funktionieren, wurde uns erst von Herr Redweik erkl"art.
 Nun hatten wir das Problem, dass wir keine Ahnung hatten wie wir die Spannung mit Hilfe des Raspberry-Pi umkehren sollten.
 Da erkl"arte uns Erich Redweik, dass das sehr einfach mit Hilfe eines Relais klappt.
 
-Wir wussten nicht ganz was so ein Relais ist, geschweige denn wo wir so etwas herbekommen w"urden.
+Wir wussten nicht ganz, was so ein Relais ist, geschweige denn, wo wir so etwas herbekommen k"onnten.
 Wir schauten es im Internet nach und fanden mit Hilfe von Wikipedia heraus, dass ein Relais ein fernbedienbarer Schalter sei, der durch elektrischen Strom betrieben wird und eine elektromagnetische Wirkung hat.
-Im gleichen Arbeitsschritt schauten wir bei Online H"andlern, wie Amazon, Conrad, etc.,  nach ob, jene solche Relais besa"sen.
-Da kein Laden in unserer n"ahe solche Relais besa"sen, rief Timo bei seinem Opa in Essen an, Fritz Tillmann, da Timo wusste das dort eine Conrad-Filiale war.
+Im gleichen Arbeitsschritt schauten wir bei Online-H"andlern wie Amazon, Conrad, etc. nach, ob jene solche Relais besa"sen.
+Da kein Laden in unserer N"ahe solche Relais besa"sen, rief Timo bei seinem anderen Opa in Essen an, Fritz Tillmann, da Timo wusste, dass dort eine Conrad-Filiale war.
 Timo konnte erreichen, dass sein Opa ihm ein Relais besorgt und ihm per Post sendet.
 
 Das Paket kam auch eine Woche sp"ater bei Timo zuhause an.
 Die Relais, von denen wir vier St"uck auf einer Platine bekommen hatten, wurden direkt ausgepackt und in Betrieb genommen.
-Wir verzichteten bei den Relais auf einen Test und bauten jene sofort ein.
-Das klappte auch super einfach, da Timo Opa dem Paket eine Skizze des Schaltplans beilegte und wir nur noch die einzelnen Kabel an die Richtige Position bringen mussten.
+Wir verzichteten bei den Relais auf einen Test und bauten sie sofort ein.
+Nach mehrmaligem Versuchen gelang es uns endlich, sie korrekt zu integrieren.
 
-Die Relais wurden so angeschlossen, dass der VCC Anschluss mit einem Jumper-Stecker zu den der Ultraschallsensoren hinzugef"ugt wurde, der GND Anschluss an ein Ground Pin verbunden wurde und die Anschl"usse der einzelnen Relais Schalter an jeweils einen GPIO-Pin.
-Wir verbanden dann die beiden Motoren mit den Relais "uber das Breadboard und testeten dann ob die Konstruktion funktionierte.
+Die Relais wurden so angeschlossen, dass der VCC-Anschluss mit einem Jumper-Stecker zu den der Ultraschallsensoren hinzugef"ugt wurde, der GND-Anschluss mit einem Ground-Pin verbunden wurde und die Anschl"usse der einzelnen Relais-Schalter an jeweils einen GPIO-Pin.
+Wir verbanden dann die beiden Motoren mit den Relais "uber das Breadboard und testeten dann, ob die Konstruktion funktionierte.
 
-Da diese Tests einwandfrei funktionierten wurde auch Platz f"ur die Relais-Platine gemacht und sie wurde mit Schrauben an dem Chassis montiert. Als das geschafft war wurde das Programm bearbeitet sodass auch die Relais eingeschlossen waren.
+Da diese Tests einwandfrei funktionierten wurde auch Platz f"ur die Relais-Platine gemacht und sie wurde mit Schrauben an dem Chassis montiert. Als das geschafft war, wurde das Programm bearbeitet, sodass auch die Relais eingeschlossen waren.
 
-Nun wurden die ersten richtigen Tests mit dem Auto durchgef"uhrt und getestet ob die Motoren angesprochen werden konnten. Dann wurden auch die Ultraschallsensoren hinzugef"ugt.
+Nun wurden die ersten richtigen Tests mit dem Auto durchgef"uhrt und getestet, ob die Motoren angesprochen werden konnten. Dann wurden auch die Ultraschallsensoren hinzugef"ugt.
 
 Dann stieg die Spannung, weil wir die erste Fahrt mit dem Auto machten und das Auto auf eine Wand zufuhr und vor jener stehen bleiben sollte. Das Auto blieb im gew"unschten Abstand vor der Wand stehen und damit hatten wir unseren ersten Erfolg erzielt.
 

@@ -210,9 +210,7 @@ Etwa die Methode measure(i), welche eine Messung mit dem Sensor i durchf"uhrt un
 Wobei i die Nummer des Sensors ist (wir haben diese von 0 bis 3 durchnummeriert).
 Diese Funktionen werde ich im Folgenden einzeln erl"autern.
 
-\medskip
-
-\textbf{setup()}
+\subsection{setup()}\label{sec2.2.1}
 \lstinputlisting[language=Python, firstline=30, lastline=46]{../main.py}
 Diese Funktion wird als erstes ausgef"uhrt, wenn das Hauptprogramm gestartet wird.
 Sie ist daf"ur zust"andig, alle Pins wieder auf ihren Ausgangszustand zur"uckzusetzen, d.~h. die Pins auf OUT bzw. IN zu stellen und die angelegte Spannung der OUT-Pins auf 0~V zu setzen.
@@ -220,9 +218,7 @@ Au"serdem werden die Einstellungen der GPIO Library gesetzt.
 Die GPIO Library haben wir als Schnittstelle zwischen unserem Programm und den Pins des Raspberry Pi gew"ahlt.
 Durch Funktionsaufrufe an diese Library k"onnen wir ablesen, ob an den IN-Pins eine Spannung von 3,5~V anliegt, und wir k"onnen an den OUT-Pins selbst eine Spannung von 3,5~V anlegen.
 
-\medskip
-
-\textbf{driveForward()}
+\subsection{driveForward()}\label{sec2.2.2}
 \lstinputlisting[language=Python, firstline=143, lastline=149]{../main.py}
 Beim Aufruf dieser Funktion f"angt das Auto an zu fahren.
 Dies wird durch eine "Anderung der Spannungen an den Pins, die "uber das Relais am Antriebsmotor angeschlossen sind, erreicht.
@@ -231,7 +227,7 @@ Das daf"ur sorgt, dass das Auto beginnt vorw"arts zu beschleunigen.
 
 \medskip
 
-\textbf{measure(i)}
+\subsection{measure(i)}\label{sec2.2.3}
 \lstinputlisting[language=Python, firstline=54, lastline=81]{../main.py}
 Der Parameter i in dieser Funktion beschreibt den Sensor, mit dem gemessen werden soll.
 Dabei handelt es sich bei i um eine Zahl von 0 bis 3.
@@ -247,7 +243,7 @@ Falls dies passiert, wird als gemessener Zeitwert -1 abgespeichert, dies behande
 
 \medskip
 
-\textbf{check\_results(i)}
+\subsection{check\_results(i)}\label{sec2.2.4}
 \lstinputlisting[language=Python, firstline=108, lastline=136]{../main.py}
 Bereits bei den ersten Tests ist uns aufgefallen, dass relativ h"aufig fehlerhafte Werte auftreten.
 Deshalb war uns schon ziemlich fr"uh klar, dass wir eine Funktion brauchen, die die Messwerte auf ihre Richtigkeit "uberpr"uft.

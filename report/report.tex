@@ -32,6 +32,8 @@
 	tabsize=4
 }
 
+%\usepackage[nottoc]{tocbibind}
+
 \begin{document}
 
 {\Large\bf Autonomes Automobil}
@@ -78,7 +80,7 @@ Friedrich-Wilhelm-Gymnasium K"oln, Severinstr. 241, 50676 K"oln
 
 \medskip
 
-5. April  2015
+31. M"arz  2015
 
 \medskip
 
@@ -96,6 +98,11 @@ Friedrich-Wilhelm-Gymnasium K"oln, Severinstr. 241, 50676 K"oln
 {\small Gl"uck, Geld, Sorgenfreies Leben}
 
 \bigskip
+
+
+\tableofcontents
+
+\newpage
 
 
 \section{Einf"uhrung}\label{sec1}
@@ -158,8 +165,6 @@ Der erste Arbeitsunterpunkt wurde so behandelt und folgender L"osung zugef"uhrt.
 \end{equation}
 
 die der Kollege Albert vom Patentamt Bern \cite{Alb05} auch schon beschrieben hat.
-
-Diese "Uberlegung ist in Abb.~\ref{Fig2} dargestellt.
 
 \begin{figure}[h]
 	\centering
@@ -270,6 +275,16 @@ Danach k"onnte man nocheinmal versuchen, das Auto Kurven fahren zu lassen.
 \bigskip
 
 
+\addcontentsline{toc}{section}{Literatur}
+\begin{thebibliography}{99}
+	\itemsep-2pt \small
+	\bibitem{Alb05} A. Einstein, Annalen der Physik {\bf 18}, 639 (1905).
+	\bibitem{Alb06} A. Einstein, Annalen der Physik {\bf 18}, 639 (1906).
+\end{thebibliography}
+
+\newpage
+
+
 {\large\bf Danksagung}
 
 \medskip
@@ -284,15 +299,5 @@ blabla
 \medskip
 
 blabla
-
-\bigskip
-
-
-\begin{thebibliography}{99}
-	\itemsep-2pt \small
-	\bibitem{Alb05} A. Einstein, Annalen der Physik {\bf 18}, 639 (1905).
-	\bibitem{Alb06} A. Einstein, Annalen der Physik {\bf 18}, 639 (1906).
-\end{thebibliography}
-
 
 \end{document}

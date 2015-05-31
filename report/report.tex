@@ -32,7 +32,7 @@
 	tabsize=4
 }
 
-\newenvironment{myitemize}{
+\newenvironment{smallitemize}{
 	\begin{itemize}
 		\setlength{\itemsep}{0pt}
 		\setlength{\parskip}{0pt}
@@ -146,7 +146,7 @@ Die Aufteilung der Arbeit ist in Tabelle~\ref{Tab1} dargestellt.
 		Abschnitt & Person \\ \hline
 		Abstract & Nicolas \\
 		(1) Einf"uhrung & Nicolas \\
-		(2.0) Haupteil & noch niemand \\
+		(2.0) Haupteil & Nicolas \\
 		(2.1) Hardware & Timo \\
 		(2.2) Software & Quentin \\
 		(3) Fazit und Ausblick & Nicolas \\
@@ -186,53 +186,53 @@ Wir erkundigten uns auf Amazon "uber Produkte, welche wir eventuell kaufen w"urd
 
 Wir "uberlegten uns, dass wir folgende Objekte brauchen w"urden, die essentiell waren, um passable Ergebnisse zeigen zu k"onnen:
 
-\begin{myitemize}
+\begin{smallitemize}
 	\item Modellauto mit Motor
 	\item Computer, z.~B. Raspberry-Pi oder Arduino
 	\item Akku f"ur Computer
 	\item Kabel f"ur die Verbindungen
 	\item Ultraschallsensoren f"ur Umgebungserfassung
-\end{myitemize}
+\end{smallitemize}
 
-Wir haben uns dann f"ur ein Mini Cooper Modellauto in einen 1:30 Ma"sstab entschieden, f"ur einen Raspberry-Pi, f"ur einen 5600 mA/h Akku, Jumper-Stecker f"ur die Verbindungen und HC-SR04 Umgebungserfassungs-Module mit Ultraschall, welche extra f"ur den Raspberry-Pi abgestimmt waren.
+Wir haben uns dann f"ur ein Mini Cooper Modellauto in einen 1:30 Ma"sstab entschieden, f"ur einen Raspberry-Pi, f"ur einen 5600 mAh Akku, Jumper-Stecker f"ur die Verbindungen und HC-SR04 Umgebungserfassungs-Module mit Ultraschall, welche extra f"ur den Raspberry-Pi abgestimmt waren.
 Nach dieser Voreinsch"atzung, was wir f"ur Produkte brauchen, haben wir diese kurz danach bestellt.
 
 Ungef"ahr einen Monat nachdem wir diese Komponenten bestellt hatten, kamen sie dann auch bei uns an. 
 \newline
 {\bf Aufbau/Beschreibung:}
-\begin{myitemize}
+\begin{smallitemize}
 	\item Raspberry Pi:
-	\begin{myitemize}
+	\begin{smallitemize}
 		\item 4 USB Ports
 		\item 1 HDMI Port
 		\item 1 Lan Port
 		\item 1 Sound Port
 		\item 1 Mikro USB Port  f"ur Akku
 		\item 40 GPIO Pins zur Daten"ubertragung
-	\end{myitemize}
+	\end{smallitemize}
 	\item Akku:
-	\begin{myitemize}
+	\begin{smallitemize}
 		\item Akkumulator
 		\item USB- auf Mikro-USB-Kabel
-	\end{myitemize}
+	\end{smallitemize}
 	\item Breadboard:
-	\begin{myitemize}
+	\begin{smallitemize}
 		\item Board f"ur Jumper-Stecker
-	\end{myitemize}
+	\end{smallitemize}
 	\item Jumper Stecker
 	\item Ultraschallsensoren:
-	\begin{myitemize}
+	\begin{smallitemize}
 		\item 4 Pins (GND, ECHO, VCC, TRIG)
 		\item 1 Empf"anger
 		\item 1 Sender
-	\end{myitemize}
+	\end{smallitemize}
 	\item Modellauto:
-	\begin{myitemize}
+	\begin{smallitemize}
 		\item Chassis mit Motoren f"ur Steuern und Beschleunigen
 		\item Karosserie aus Plastik nur Verzierung und Antenne
 		\item Fernbedienung mit 4 Kn"opfen
-	\end{myitemize}
-\end{myitemize}
+	\end{smallitemize}
+\end{smallitemize}
 
 \subsubsection{Funktiontest der Komponenten}\label{sec2.1.2}
 
@@ -242,24 +242,24 @@ Beim ersten Anlauf hat es auf Anhieb sofort geklappt und wir konnten erste Messu
 Wir haben das Auto auf die Stra"se gesetzt und haben es ca. 15- bis 20-mal fahren lassen.
 Mithilfe von einer Stoppuhr und einer physikalischen Formel haben wir unterschiedliche Faktoren berechnet, dessen Ergebnisse wir selbstverst"andlich in unserem Laborbuch notiert haben:
 
-\begin{myitemize}
+\begin{smallitemize}
 	\item Geschwindigkeit: v = s/t:
-	\begin{myitemize}
+	\begin{smallitemize}
 		\item $ \approx $ 2,34~m/s, raue Stra"se
 		\item $ \approx $ 2,52~m/s, Fu"sweg/Steinplatten
-	\end{myitemize}
+	\end{smallitemize}
 	\item $ \frac{\pi}{2} $-Kurve:
-	\begin{myitemize}
+	\begin{smallitemize}
 		\item $ \approx $ 0,29~rad $ \pm $ 0,02~rad Radneigung
 		\item ca. 87 bis 90~cm (Stra"se), ca. 83 bis 85~cm (Fu"sweg) Hypotenuse f"ur $ \frac{\pi}{2} $-Kurve
-	\end{myitemize}
+	\end{smallitemize}
 	\item Bremsweg: $ < $ 5~cm
-\end{myitemize}
+\end{smallitemize}
 
 Den Raspberry-Pi, den wir uns zugelegt hatten, hatten wir getestet, indem wir den vorher aufgeladenen Akku angeschlossen hatten, ein Betriebssystem mithilfe einer SD-Karte integriert hatten und mithilfe einiger simplen Befehle den Raspberry-Pi auf seine Funktion getestet hatten. 
 Nachdem wir dann die Best"atigung hatten, dass der Raspberry-Pi funktionierte, war als n"achstes jeder der Ultraschallsensoren dran.
 Dazu hatten wir sie einzeln an den Raspberry-Pi angeschlossen, indem wir jeden der Pins der Ultraschallsensoren zu einem dazu passenden Pin am Raspberry-Pi verbunden hatten.
-Sprich der GND (Ground) Anschluss an den Ground Pin, den VCC (Stromversorgung) Anschluss an den Strom Pin und die ECHO und TRIG Anschl"usse wurden an jeweils an einen freien GPIO Pin angeschlossen.
+Sprich der GND (Ground) Anschluss an den Ground Pin, den VCC (Stromversorgung) Anschluss an den Strom Pin und die ECHO und TRIG Anschl"usse wurden an jeweils an einen freien GPIO Pin angeschlossen (siehe Abb.~\ref{Fig3}).
 Nun, da wir die Sensoren angeschlossen hatten, wurde sogleich die Reichweite und die Genauigkeit der einzelnen Sensoren getestet.
 Aber wie genau diese Tests mit den einzelnen Codes ausgef"uhrt wurden, l"asst sich aus dem Abschnitt {\bf 2.2 Software} sehr gut herleiten.
 
@@ -314,10 +314,17 @@ Wir verzichteten bei den Relais auf einen Test und bauten sie sofort ein.
 Nach mehrmaligem Versuchen gelang es uns endlich, sie korrekt zu integrieren.
 
 Die Relais wurden so angeschlossen, dass der VCC-Anschluss mit einem Jumper-Stecker zu den der Ultraschallsensoren hinzugef"ugt wurde, der GND-Anschluss mit einem Ground-Pin verbunden wurde und die Anschl"usse der einzelnen Relais-Schalter an jeweils einen GPIO-Pin.
-Wir verbanden dann die beiden Motoren mit den Relais "uber das Breadboard und testeten dann, ob die Konstruktion funktionierte.
+Wir verbanden dann die beiden Motoren mit den Relais "uber das Breadboard und testeten dann, ob die Konstruktion funktionierte (siehe Abb.~\ref{Fig3}).
 
 Da diese Tests einwandfrei funktionierten, wurde auch Platz f"ur die Relais-Platine gemacht und sie wurde mit Schrauben an dem Chassis montiert.
 Als das geschafft war, wurde das Programm bearbeitet, sodass auch die Relais eingeschlossen waren.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{./media/circuit.png}
+	\caption{Vollst"andiger Schaltplan}
+	\label{Fig3}
+\end{figure}
 
 \subsubsection{Erste Fahrversuche}\label{sec2.1.5}
 
@@ -326,6 +333,10 @@ Nun wurden die ersten richtigen Tests mit dem Auto durchgef"uhrt und getestet, o
 Dann stieg die Spannung, weil wir die erste Fahrt mit dem Auto machten und das Auto auf eine Wand zufuhr und vor jener stehen bleiben sollte. Das Auto blieb im gew"unschten Abstand vor der Wand stehen und damit hatten wir unseren ersten Erfolg erzielt.
 
 \subsubsection{Kurven}\label{sec2.1.6}
+
+Nachdem wir die geraden Strecken mit Bravur gemeistert hatten, versuchten wir uns an Kurven.
+Wir sa"sen eine lange Zeit an den Kurven.
+Wegen software-technischen Problemen war es uns nicht m"oglich dieses Thema in gew"unschtem Maße zu erf"ullen. Mehr dazu im Abschnitt {\bf 2.2.6 turn(a)}.
 
 \subsection{Software}\label{sec2.2}
 
@@ -476,7 +487,7 @@ Danach k"onnte man nocheinmal versuchen, das Auto Kurven fahren zu lassen.
 
 \medskip
 
-blabla
+Wir danken Erich Redweik und Fritz Tillmann f"ur ihre freundliche Unterst"utzung bei dem Projekt.
 
 \bigskip
 
@@ -485,6 +496,7 @@ blabla
 
 \medskip
 
-blabla
+Hiermit best"atige ich, dass ich die vorliegende Arbeit selbst"andig verfasst und keine anderen als die angegebenen Hilfsmittel benutzt habe.
+Die Stellen der Arbeit, die dem Wortlaut oder dem Sinn nach anderen Werken (dazu z"ahlen auch Internetquellen) entnommen sind, wurden unter Angabe der Quelle kenntlich gemacht.
 
 \end{document}

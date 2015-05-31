@@ -157,11 +157,13 @@ Die Aufteilung der Arbeit ist in Tabelle~\ref{Tab1} dargestellt.
 	\label{Tab1}
 \end{table}
 
-Im folgenden Hauptteil haben wir zuerst die Hardware, dann die Software behandelt.
-
 \section{Hauptteil}\label{sec2}
 
-die der Kollege Albert vom Patentamt Bern \cite{ModMyPi} auch schon beschrieben hat.
+Im folgenden Abschnitt haben wir zuerst die Hardware, dann die Software behandelt.
+Bei der Hardware gehen wir besonders auf die Entwicklung derselben ein.
+Abb.~\ref{Fig2} zeigt eine "Ubersichtsskizze des Schaltplans, wie er sich im Verlauf des Projekts herausgebildet hat.
+
+Genauso detailliert erl"autern wir im zweiten Abschnitt, wie das Programm im Endstadium aufgebaut ist und wie es funktioniert.
 
 \begin{figure}[h]
 	\centering
@@ -196,8 +198,8 @@ Wir haben uns dann f"ur ein Mini Cooper Modellauto in einen 1:30 Ma"sstab entsch
 Nach dieser Voreinsch"atzung, was wir f"ur Produkte brauchen, haben wir diese kurz danach bestellt.
 
 Ungef"ahr einen Monat nachdem wir diese Komponenten bestellt hatten, kamen sie dann auch bei uns an. 
-
-Aufbau/Beschreibung:
+\newline
+{\bf Aufbau/Beschreibung:}
 \begin{myitemize}
 	\item Raspberry Pi:
 	\begin{myitemize}
@@ -259,7 +261,7 @@ Nachdem wir dann die Best"atigung hatten, dass der Raspberry-Pi funktionierte, w
 Dazu hatten wir sie einzeln an den Raspberry-Pi angeschlossen, indem wir jeden der Pins der Ultraschallsensoren zu einem dazu passenden Pin am Raspberry-Pi verbunden hatten.
 Sprich der GND (Ground) Anschluss an den Ground Pin, den VCC (Stromversorgung) Anschluss an den Strom Pin und die ECHO und TRIG Anschl"usse wurden an jeweils an einen freien GPIO Pin angeschlossen.
 Nun, da wir die Sensoren angeschlossen hatten, wurde sogleich die Reichweite und die Genauigkeit der einzelnen Sensoren getestet.
-Aber wie genau diese Tests mit den einzelnen Codes ausgef"uhrt wurden, l"asst sich aus dem Abschnitt Software sehr gut herleiten.
+Aber wie genau diese Tests mit den einzelnen Codes ausgef"uhrt wurden, l"asst sich aus dem Abschnitt {\bf 2.2 Software} sehr gut herleiten.
 
 Um all dies ordentlich ausf"uhren zu k"onnen, stand uns die gesamte Zeit ein Fernseher-Bildschirm und eine Tastatur zur Verf"ugung, um die Eingaben f"ur das Programm zu t"atigen und sie auf einer grafischen Oberfl"ache darstellen zu k"onnen.
 
@@ -443,13 +445,13 @@ Diese Funktion starten wir also, vor dem Start von drive1(), um ein wenig Zeit z
 Wir haben es geschafft, dass das Auto geradeaus fahren kann.
 Das ist ein Teilerfolg, aber das urspr"ungliche Ziel (einen Parkours zu fahren) haben wir nicht erreicht.
 
-Besondere Probleme haben uns die Kurven bereitet. ...
+Besondere Probleme haben uns die Kurven bereitet. Dieses Problem hat uns lange besch"aftigt und wurde in {\bf 2.2.6 turn(a)} bereits erl"autert.
 
 Au"serdem hatten wir Schwierigkeiten, bei dem immer komplexer werdenden Programm den "Uberblick zu behalten.
 Wir haben den Aufwand und die Komplexit"at des Programms zuerst untersch"atzt.
 Wir haben mehrmals versucht, einen hinreichenden Logfile zu implementieren; letztendlich hat es aber nicht gereicht, um die aufgetretenen Fehler zu identifizieren.
 
-Wir haben nicht verstanden, wof"ur die uns empfohlenen [siehe ...] Widerst"ande gut sein sollen.
+Wir haben nicht verstanden, wof"ur die uns empfohlenen {\bf [siehe ...]} Widerst"ande gut sein sollen.
 Vielleicht hat dieser Umstand auch einige Probleme verursacht, zum Beispiel bei den Messungen von den Ultraschallsensoren?
 
 Die hardwareseitige Entwicklung lief weitgehend zufriedenstellen.
@@ -464,7 +466,7 @@ Danach k"onnte man nocheinmal versuchen, das Auto Kurven fahren zu lassen.
 \addcontentsline{toc}{section}{Literatur}
 \begin{thebibliography}{99}
 	\itemsep-2pt \small
-	\bibitem{ModMyPi} http://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi
+	\bibitem{ModMyPi} http://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi %\cite{ModMyPi}
 \end{thebibliography}
 
 \newpage
